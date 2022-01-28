@@ -16,3 +16,7 @@ td{
 .table-responsive{
     /*display: table !important;*/
 }
+a{
+    color: #ff4654;
+    text-decoration: none;
+}
