@@ -49,7 +49,7 @@
                 <li><a href="version.php">Versão</a></li>
                 <li><a href="../specs.php">Specs</a></li>
             </ul>
-            <h2>Agentes</h2>
+            <h2>Moedas</h2>
             <div class="table-bordered">
                 <table class="table">
                     <thead>
