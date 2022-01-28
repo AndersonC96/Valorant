@@ -1,13 +1,15 @@
 <?php
-    $url = 'https://valorant-api.com/v1/agents?language=pt-BR';
+    $url = 'https://valorant-api.com/v1/bundles?language=pt-BR';
     $ch = curl_init($url);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
     $resultado = json_decode(curl_exec($ch));
     //var_dump ($resultado);
     foreach($resultado->data as $agente){
-        echo "Nome: " . $agente->abilities[0]->displayName . "<br>";
-        echo "Descrição: " . $agente->abilities[0]->description . "<br>";
+        echo "Nome: " . $agente->verticalPromoImage . "<br>";
+        echo "Descrição: " . $agente->extraDescription . "<br>";
+        echo "Descrição 2: " . $agente->promoDescription . "<br>";
+        echo "Descrição 3: " . $agente->useAdditionalContext . "<br>";
         echo "<tr></tr>" . "<br>";
         /*echo "Nome: " . $agente->abilities[1]->displayName . "<br>";
         echo "Descrição: " . $agente->abilities[1]->description . "<br>";
