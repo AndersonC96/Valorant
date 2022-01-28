@@ -11,26 +11,8 @@
             <ul>
                 <li>
                     <a href="index.php">Home</a>
-                    <a href="agents.php">Agentes</a>
-                    <a href="buddies.php">Companheiros</a>
-                    <a href="bundles.php">Bundles</a>
-                    <a href="ceremonies.php">Cerimônias</a>
-                    <a href="competitive_tiers.php">Níveis competitivos</a>
-                    <a href="content_tiers.php">Níveis de conteúdo</a>
-                    <a href="contracts.php">Contratos</a>
-                    <a href="currencies.php">Moedas</a>
-                    <a href="events.php">Eventos</a>
-                    <a href="gamemodes.php">Modos de jogo</a>
-                    <a href="gear.php">Equipamento</a>
-                    <a href="maps.php">Mapas</a>
-                    <a href="player_cards.php">Cartas de jogador</a>
-                    <a href="player_titles.php">Títulos dos Jogadores</a>
-                    <a href="seasons.php">Temporadas</a>
-                    <a href="sprays.php">Sprays</a>
-                    <a href="themes.php">Temas</a>
-                    <a href="weapons.php">Armas</a>
-                    <a href="version.php">Versão</a>
                     <a href="specs.php">Specs</a>
+                    <a href="./PHP/agents.php">Mais</a>
                 </li>
             </ul>
         </nav>
