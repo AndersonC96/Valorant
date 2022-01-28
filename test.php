@@ -1,5 +1,5 @@
 <?php
-    $url = 'https://valorant-api.com/v1/bundles?language=pt-BR';
+    $url = 'https://valorant-api.com/v1/ceremonies?language=pt-BR';
     $ch = curl_init($url);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
