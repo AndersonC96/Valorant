@@ -66,16 +66,16 @@
                     </thead>
                     <?php
                         foreach($resultado->data as $agente){
-                            $id = str_replace("https://valorant-api.com/v1/agents/", "", $agente->uuid);
+                            $id = str_replace("https://valorant-api.com/v1/agents/", "", $agente->uuid);//pega o id do agente
                             echo "<tr>";
-                            echo "<td>"."<img src=$agente->killfeedPortrait><img>"."</td>";
-                            echo "<td hidden>".$agente->uuid."</td>";
-                            echo "<td><a href='./agents_details.php/$id' target='blank'>"."$agente->displayName"."</a></td>";
-                            echo "<td>".$agente->description."</td>";
-                            echo "<td>".$agente->developerName."</td>";
-                            echo "<td>".$agente->characterTags[0].','.'<br>'.$agente->characterTags[1]."</td>";
-                            echo "<td>".$agente->role->displayName."</td>";
-                            echo "<td>".$agente->abilities[0]->displayName.','."<br>".$agente->abilities[1]->displayName.','."<br>".$agente->abilities[2]->displayName.','."<br>".$agente->abilities[3]->displayName."</td>";
+                            echo "<td>"."<img src=$agente->killfeedPortrait><img>"."</td>";//mostra a imagem do agente
+                            echo "<td hidden>".$agente->uuid."</td>";//mostra o id do agente
+                            echo "<td><a href='./agents_details.php/$id' target='blank'>"."$agente->displayName"."</a></td>";//mostra o nome do agente
+                            echo "<td>".$agente->description."</td>";//mostra a descrição do agente
+                            echo "<td>".$agente->developerName."</td>";//mostra o nome de desenvolvimento do agente
+                            echo "<td>".$agente->characterTags[0].','.'<br>'.$agente->characterTags[1]."</td>";//mostra as características do agente
+                            echo "<td>".$agente->role->displayName."</td>";//mostra o papel do agente
+                            echo "<td>".$agente->abilities[0]->displayName.','."<br>".$agente->abilities[1]->displayName.','."<br>".$agente->abilities[2]->displayName.','."<br>".$agente->abilities[3]->displayName."</td>";//mostra as habilidades do agente
                             echo "</tr>";
                         }
                     ?>
