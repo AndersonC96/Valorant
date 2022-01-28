@@ -9,7 +9,7 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-        <link rel="stylesheet" href="css/table.css" />
+        <link rel="stylesheet" href="../css/table.css" />
     </head>
     <body>
         <?php
@@ -27,7 +27,7 @@
         ?>
         <div class="container">
             <ul class="nav nav-tabs">
-                <li><a href="./index.php">Home</a></li>
+                <li><a href="../index.php">Home</a></li>
                 <li class="active"><a href="agents.php">Agentes</a></li></li>
                 <li><a href="buddies.php">Companheiros</a></li>
                 <li><a href="bundles.php">Bundles</a></li>
@@ -47,7 +47,7 @@
                 <li><a href="themes.php">Temas</a></li>
                 <li><a href="weapons.php">Armas</a></li>
                 <li><a href="version.php">Versão</a></li>
-                <li><a href="specs.php">Specs</a></li>
+                <li><a href="../specs.php">Specs</a></li>
             </ul>
             <h2>Agentes</h2>
             <div class="table-bordered">
@@ -62,9 +62,11 @@
                     </thead>
                     <?php
                         foreach($resultado->data as $agente){
+                            $id = str_replace("https://valorant-api.com/v1/agents/", "", $agente->uuid);
                             echo "<tr>";
                             echo "<td>"."<img src=$agente->killfeedPortrait><img>"."</td>";
-                            echo "<td>"."$agente->displayName"."</td>";
+                            echo "<td hidden>".$agente->uuid."</td>";
+                            echo "<td><a href='./agents_details.php/$id' target='blank'>"."$agente->displayName"."</a></td>";
                             echo "<td>".$agente->description."</td>";
                             echo "<td>".$agente->characterTags[0]."</td>";
                             echo "<td>".$agente->role->displayName."</td>";
