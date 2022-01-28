@@ -3,10 +3,15 @@ body{
     font-family: 'VALORANT', sans-serif;
     background-color: #ece7e1;
     cursor: default;
+    height: 100vh;
 }
 td{
     text-align:center;
 }
 .table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th{
     vertical-align: middle;
+    margin-bottom: 0 !important;
+}
+.table-responsive{
+    display: table !important;
 }
