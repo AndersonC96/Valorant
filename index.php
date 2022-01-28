@@ -52,7 +52,7 @@
                             Os agentes e suas habilidades de assinatura são como você ganha com habilidade e estilo. Adaptar e superar no papel de um Duelista, Iniciador, Controlador ou Sentinela.
                         </p>
                     </div>
-                    <a href="agents.php">Ver todos os agentes</a>
+                    <a href="./PHP/agents.php">Ver todos os agentes</a>
                 </div>
                 <div class="agentsLeft">
                     <div>
@@ -69,6 +69,44 @@
                     <p>
                         Haven. Bind. Split. Ascent. Cada etapa para uma infinidade de jogadas experientes, garras de agente e estratégias de equipe.
                     </p>
+                </div>
+            </div>
+        </div>
+        <div class="agentsIntro">
+            <div class="agentsColumn">
+                <div class="agentsRight">
+                    <h1>Funções</h1>
+                    <div class="agentsSub">
+                        <h2>Iniciador</h2>
+                        <table>
+                            <p>
+                                Iniciadores desafiam situações arriscadas, preparando a equipe para entrar em terreno contestado e rechaçar defensores.
+                            </p>
+                        </table>
+                        <h2>Duelista</h2>
+                        <table>
+                            <p>
+                                Duelistas são abatedores independentes que estão sempre prontos para o confronto. Eles usam habilidades e perícia para conseguir vários abates.
+                            </p>
+                        </table>
+                        <h2>Sentinela</h2>
+                        <table>
+                            <p>
+                                Sentinelas são especialistas em defesa que podem bloquear áreas e vigiar flancos, tanto nas rodadas de ataque, quanto nas de defesa.
+                            </p>
+                        </table>
+                        <h2>Controlador</h2>
+                        <table>
+                            <p>
+                                Controladores se dedicam a dissecar territórios perigosos e pavimentar o caminho do sucesso para a equipe.
+                            </p>
+                        </table>
+                    </div>
+                </div>
+                <div class="agentsLeft">
+                    <div>
+                        <img src="images/reyna.png" alt="Agent Image"/>
+                    </div>
                 </div>
             </div>
         </div>
