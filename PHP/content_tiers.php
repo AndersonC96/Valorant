@@ -3,7 +3,7 @@
 ?>
 <html>
     <head>
-        <title>Valorant | Agentes</title>
+        <title>Valorant | Níveis de conteúdo</title>
         <link rel="shortcut icon" href="../images/favicon.png"/>
         <embed name="myMusic" loop="true" hidden="true" src="./music.mp3">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -50,7 +50,7 @@
                 <li><a href="version.php">Versão</a></li>
                 <li><a href="../specs.php">Specs</a></li>
             </ul>
-            <h2>Agentes</h2>
+            <h2>Níveis de conteúdo</h2>
             <div class="table-bordered">
                 <table class="table">
                     <thead>
