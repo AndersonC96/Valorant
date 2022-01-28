@@ -34,7 +34,6 @@
                 <li class="active"><a href="buddies.php">Companheiros</a></li>
                 <li><a href="bundles.php">Bundles</a></li>
                 <li><a href="ceremonies.php">Cerimônias</a></li>
-                <li><a href="competitive_tiers.php">Níveis competitivos</a></li>
                 <li><a href="content_tiers.php">Níveis de conteúdo</a></li>
                 <li><a href="contracts.php">Contratos</a></li>
                 <li><a href="currencies.php">Moedas</a></li>
