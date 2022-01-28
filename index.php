@@ -30,6 +30,7 @@
                     <a href="themes.php">Temas</a>
                     <a href="weapons.php">Armas</a>
                     <a href="version.php">Versão</a>
+                    <a href="specs.php">Specs</a>
                 </li>
             </ul>
         </nav>
