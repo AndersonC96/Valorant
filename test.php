@@ -6,7 +6,7 @@
     $resultado = json_decode(curl_exec($ch));
     //var_dump ($resultado);
     foreach($resultado->data as $agente){
-        echo "Nome: " . $agente->verticalPromoImage . "<br>";
+        echo "Nome: " . $agente->displayNameSubText . "<br>";
         echo "Descrição: " . $agente->extraDescription . "<br>";
         echo "Descrição 2: " . $agente->promoDescription . "<br>";
         echo "Descrição 3: " . $agente->useAdditionalContext . "<br>";
