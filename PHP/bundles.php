@@ -36,7 +36,6 @@
                 <li><a href="ceremonies.php">Cerimônias</a></li>
                 <li><a href="competitive_tiers.php">Níveis competitivos</a></li>
                 <li><a href="content_tiers.php">Níveis de conteúdo</a></li>
-                <li><a href="contracts.php">Contratos</a></li>
                 <li><a href="currencies.php">Moedas</a></li>
                 <li><a href="events.php">Eventos</a></li>
                 <li><a href="gamemodes.php">Modos de jogo</a></li>
