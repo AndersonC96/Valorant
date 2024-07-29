@@ -13,26 +13,26 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="../css/table.css" />
         <style>
-            .navbar-brand {
+            .navbar-brand{
                 font-weight: bold;
                 color: #ff4655 !important;
             }
-            .navbar-nav .nav-link {
+            .navbar-nav .nav-link{
                 color: #ffffff !important;
                 margin-right: 10px;
             }
-            .navbar-nav .nav-link.active {
+            .navbar-nav .nav-link.active{
                 color: #ff4655 !important;
                 font-weight: bold;
             }
-            .dropdown-menu {
+            .dropdown-menu{
                 background-color: #1c1c1c;
                 border: none;
             }
-            .dropdown-menu .dropdown-item {
+            .dropdown-menu .dropdown-item{
                 color: #ffffff;
             }
-            .dropdown-menu .dropdown-item:hover {
+            .dropdown-menu .dropdown-item:hover{
                 background-color: #ff4655;
                 color: #ffffff;
             }
