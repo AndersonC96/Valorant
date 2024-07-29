@@ -112,7 +112,7 @@
         </div>
         <footer>
             <p>
-                &copy; 2020 Riot Games, inc, Riot Games, <span>Valorant</span>, e quaisquer logotipos associados são marcas comerciais, marcas de serviço e/ou marcas registradas da Riot Games, inc. Todas as outras marcas comerciais são de propriedade de seus respectivos proprietários.
+                &copy; 2024 Riot Games, inc, Riot Games, <span>Valorant</span>, e quaisquer logotipos associados são marcas comerciais, marcas de serviço e/ou marcas registradas da Riot Games, inc. Todas as outras marcas comerciais são de propriedade de seus respectivos proprietários.
             </p>
         </footer>
     </body>
