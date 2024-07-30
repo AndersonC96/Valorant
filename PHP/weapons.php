@@ -101,8 +101,8 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="gamemodes.php">Modos de jogo</a>
                             </li>
-                            <li class="nav-item active">
-                                <a class="nav-link" aria-current="page" href="weapons.php">Armas</a>
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="../specs.php">Specs</a>
                             </li>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Mais</a>
