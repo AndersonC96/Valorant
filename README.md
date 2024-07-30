@@ -1,7 +1,5 @@
 # Valorant
 
-Este projeto é uma aplicação web desenvolvida para exibir informações sobre o jogo Valorant.
-
 ## Descrição
 
 **Valorant** é uma aplicação que permite aos usuários explorar dados detalhados sobre o jogo Valorant, incluindo agentes, armas, mapas e estatísticas. A aplicação utiliza a API do Valorant para obter as informações necessárias e apresentá-las de forma intuitiva e interativa.
@@ -38,8 +36,12 @@ Este projeto é uma aplicação web desenvolvida para exibir informações sobre
     ```
 
 5. Configure a API key do Valorant:
-    - Crie uma conta no Riot Games Developer Portal.
-    - Obtenha a sua API key.
-    - Adicione a API key ao arquivo de configuração do projeto.
+    - Acesse Valorant-Api[https://valorant-api.com/].
+
+## Uso
+
+1. Navegue até a interface principal da aplicação.
+2. Utilize as opções de menu para explorar agentes, armas, mapas e estatísticas.
+3. Clique em um item para ver os detalhes completos.
 
 ---
