@@ -1,5 +1,17 @@
 <?php
     error_reporting(E_ERROR | E_PARSE);
+    $url = 'https://valorant-api.com/v1/agents?language=pt-BR';
+    $ch = curl_init($url);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+    $resultado = json_decode(curl_exec($ch));
+    $agents = $resultado->data;
+    $totalAgents = count($agents);
+    $agentsPerPage = 12;
+    $totalPages = ceil($totalAgents / $agentsPerPage);
+    $currentPage = isset($_GET['page']) ? $_GET['page'] : 1;
+    $start = ($currentPage - 1) * $agentsPerPage;
+    $currentAgents = array_slice($agents, $start, $agentsPerPage);
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -57,16 +69,22 @@
                 text-align: center;
                 color: #E5E5E5;
             }
+            .pagination .page-link{
+                background-color: #1F2A37;
+                color: #E5E5E5;
+                border: none;
+            }
+            .pagination .page-link:hover{
+                background-color: #ff4655;
+                color: #ffffff;
+            }
+            .pagination .page-item.active .page-link{
+                background-color: #ff4655;
+                border: none;
+            }
         </style>
     </head>
     <body>
-        <?php
-            $url = 'https://valorant-api.com/v1/agents?language=pt-BR';
-            $ch = curl_init($url);
-            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-            $resultado = json_decode(curl_exec($ch));
-        ?>
         <div class="container">
             <nav class="navbar navbar-expand-lg">
                 <div class="container-fluid">
@@ -128,7 +146,7 @@
             <h2 class="mt-4">Agentes</h2>
             <div class="row">
                 <?php
-                    foreach($resultado->data as $agente){
+                    foreach($currentAgents as $agente){
                         $id = str_replace("https://valorant-api.com/v1/agents/", "", $agente->uuid);
                 ?>
                 <div class="col-md-3 mb-4">
@@ -138,13 +156,16 @@
                             <h5 class="card-title"><?php echo $agente->displayName; ?></h5>
                             <p class="card-text">
                                 <b>Descrição:</b> <?php echo $agente->description; ?><br>
+                                <br>
                                 <b>Nome de desenvolvimento:</b> <?php echo $agente->developerName; ?> <br>
-                                <b>Papel:</b> <?php echo $agente->role->displayName; ?> (<i><?php echo $agente->role->description; ?></i>)<br>
-                                <b>Habilidades:</b>
+                                <br>
+                                <b>Papel: </b><img src="<?php echo $agente->role->displayIcon; ?>" alt="<?php echo $agente->role->displayName; ?>" width="24" height="24"> <i><?php echo $agente->role->description; ?></i><br>
+                                <br>
+                                <b>Habilidades</b>
                                 <ul>
                                     <?php
                                         foreach($agente->abilities as $habilidade){
-                                            echo "<li>".$habilidade->displayName. " " . "(<i>$habilidade->description</i>)"."</li>";
+                                            echo "<li><img src='".$habilidade->displayIcon."' alt='".$habilidade->displayName."' width='24' height='24'> "."<i>$habilidade->description</i>"."</li>";
                                         }
                                     ?>
                                 </ul>
@@ -156,6 +177,13 @@
                     }
                 ?>
             </div>
+            <nav>
+                <ul class="pagination justify-content-center">
+                    <?php for($i = 1; $i <= $totalPages; $i++): ?>
+                        <li class="page-item <?php if($i == $currentPage) echo 'active'; ?>"><a class="page-link" href="?page=<?php echo $i; ?>"><?php echo $i; ?></a></li>
+                    <?php endfor; ?>
+                </ul>
+            </nav>
         </div>
         <footer class="footer">
             <div class="container">
