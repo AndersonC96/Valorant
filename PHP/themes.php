@@ -1,14 +1,42 @@
 <?php
     error_reporting(E_ERROR | E_PARSE);
 ?>
-<html>
+<!DOCTYPE html>
+<html lang="pt-BR">
     <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Valorant | Temas</title>
         <link rel="shortcut icon" href="../images/favicon.png"/>
         <embed name="myMusic" loop="true" hidden="true" src="./music.mp3">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="../css/table.css" />
+        <style>
+            .navbar-brand{
+                font-weight: bold;
+                color: #ff4655 !important;
+            }
+            .navbar-nav .nav-link{
+                color: #ffffff !important;
+                margin-right: 10px;
+            }
+            .navbar-nav .nav-link.active{
+                color: #ff4655 !important;
+                font-weight: bold;
+            }
+            .dropdown-menu{
+                background-color: #1c1c1c;
+                border: none;
+            }
+            .dropdown-menu .dropdown-item{
+                color: #ffffff;
+            }
+            .dropdown-menu .dropdown-item:hover{
+                background-color: #ff4655;
+                color: #ffffff;
+            }
+        </style>
     </head>
     <body>
         <?php
@@ -19,8 +47,9 @@
             $resultado = json_decode(curl_exec($ch));
         ?>
         <div class="container">
-            <nav class="navbar navbar-expand-lg bg-danger">
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
                 <div class="container-fluid">
+                    <a class="navbar-brand" href="#">Valorant API</a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
@@ -54,7 +83,7 @@
                                 <a class="nav-link" href="gamemodes.php">Modos de jogo</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="../specs.php">Specs</a>
+                                <a class="nav-link active" aria-current="page" href="themes.php">Temas</a>
                             </li>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Mais</a>
@@ -75,17 +104,17 @@
                     </div>
                 </div>
             </nav>
-            <h2>Temas</h2>
+            <h2 class="mt-4">Temas</h2>
             <div class="row">
                 <?php
-                    foreach($resultado->data as $agente){
-                        $id = str_replace("https://valorant-api.com/v1/themes/", "", $agente->uuid);
+                    foreach($resultado->data as $theme){
+                        $id = str_replace("https://valorant-api.com/v1/themes/", "", $theme->uuid);
                 ?>
-                <div class="col-3">
+                <div class="col-md-3 mb-4">
                     <div class="card" style="width: 18rem;">
-                        <img class="card-img-top" src="<?php echo $agente->displayIcon; ?>" alt="Imagem do agente <?php echo $agente->displayName; ?>">
+                        <img class="card-img-top" src="<?php echo $theme->displayIcon; ?>" alt="Imagem do tema <?php echo $theme->displayName; ?>">
                         <div class="card-body">
-                            <h5 class="card-title" style="color: #ff4655"><?php echo $agente->displayName; ?></h5>
+                            <h5 class="card-title" style="color: #ff4655"><?php echo $theme->displayName; ?></h5>
                         </div>
                     </div>
                 </div>
