@@ -1,5 +1,10 @@
 <?php
     error_reporting(E_ERROR | E_PARSE);
+    $url = 'https://valorant-api.com/v1/weapons?language=pt-BR';
+    $ch = curl_init($url);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+    $resultado = json_decode(curl_exec($ch));
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -9,20 +14,24 @@
         <title>Valorant | Armas</title>
         <link rel="shortcut icon" href="../images/favicon.png"/>
         <embed name="myMusic" loop="true" hidden="true" src="./music.mp3">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="../css/table.css" />
         <style>
-            .navbar-brand{
-                font-weight: bold;
-                color: #ff4655 !important;
+            body{
+                font-family: 'Montserrat', sans-serif;
+                background-color: #0F1923;
+                color: #E5E5E5;
             }
-            .navbar-nav .nav-link{
-                color: #ffffff !important;
-                margin-right: 10px;
+            .navbar{
+                background-color: #ff4655;
+            }
+            .navbar-brand, .nav-link{
+                color: #E5E5E5 !important;
             }
             .navbar-nav .nav-link.active{
-                color: #ff4655 !important;
+                color: #E5E5E5 !important;
                 font-weight: bold;
             }
             .dropdown-menu{
@@ -36,18 +45,28 @@
                 background-color: #ff4655;
                 color: #ffffff;
             }
+            .card{
+                background-color: #1F2A37;
+                border: none;
+                color: #E5E5E5;
+            }
+            .card-title{
+                color: #ff4655;
+            }
+            .card-text b{
+                color: #ff4655;
+            }
+            .footer{
+                background-color: #0F1923;
+                padding: 20px 0;
+                text-align: center;
+                color: #E5E5E5;
+            }
         </style>
     </head>
     <body>
-        <?php
-            $url = 'https://valorant-api.com/v1/weapons?language=pt-BR';
-            $ch = curl_init($url);
-            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-            $resultado = json_decode(curl_exec($ch));
-        ?>
         <div class="container">
-            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <nav class="navbar navbar-expand-lg">
                 <div class="container-fluid">
                     <a class="navbar-brand" href="#">Valorant API</a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -82,8 +101,8 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="gamemodes.php">Modos de jogo</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="weapons.php">Armas</a>
+                            <li class="nav-item active">
+                                <a class="nav-link" aria-current="page" href="weapons.php">Armas</a>
                             </li>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Mais</a>
@@ -114,10 +133,10 @@
                     <div class="card" style="width: 18rem;">
                         <img class="card-img-top" src="<?php echo $weapon->displayIcon; ?>" alt="Imagem da arma <?php echo $weapon->displayName; ?>">
                         <div class="card-body">
-                            <h5 class="card-title" style="color: #ff4655"><?php echo $weapon->displayName; ?></h5>
+                            <h5 class="card-title"><?php echo $weapon->displayName; ?></h5>
                             <p class="card-text">
-                                <b style="color: #ff4655">Preço: </b><?php echo $weapon->shopData->cost; ?><br>
-                                <b style="color: #ff4655">Categoria: </b><?php echo $weapon->shopData->category; ?> (<?php echo $weapon->shopData->categoryText; ?>)<br>
+                                <b>Preço: </b><?php echo $weapon->shopData->cost; ?><br>
+                                <b>Categoria: </b><?php echo $weapon->shopData->category; ?> (<?php echo $weapon->shopData->categoryText; ?>)<br>
                             </p>
                         </div>
                     </div>
@@ -127,5 +146,10 @@
                 ?>
             </div>
         </div>
+        <footer class="footer">
+            <div class="container">
+                <p>&copy; 2024 Valorant. All rights reserved.</p>
+            </div>
+        </footer>
     </body>
 </html>
