@@ -1,5 +1,17 @@
 <?php
     error_reporting(E_ERROR | E_PARSE);
+    $url = 'https://valorant-api.com/v1/maps?language=pt-BR';
+    $ch = curl_init($url);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+    $resultado = json_decode(curl_exec($ch));
+    $mapas = $resultado->data;
+    $totalMapas = count($mapas);
+    $mapasPerPage = 12;
+    $totalPages = ceil($totalMapas / $mapasPerPage);
+    $currentPage = isset($_GET['page']) ? $_GET['page'] : 1;
+    $start = ($currentPage - 1) * $mapasPerPage;
+    $currentMapas = array_slice($mapas, $start, $mapasPerPage);
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -9,20 +21,24 @@
         <title>Valorant | Mapas</title>
         <link rel="shortcut icon" href="../images/favicon.png"/>
         <embed name="myMusic" loop="true" hidden="true" src="./music.mp3">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="../css/table.css" />
         <style>
-            .navbar-brand{
-                font-weight: bold;
-                color: #ff4655 !important;
+            body{
+                font-family: 'Montserrat', sans-serif;
+                background-color: #0F1923;
+                color: #E5E5E5;
             }
-            .navbar-nav .nav-link{
-                color: #ffffff !important;
-                margin-right: 10px;
+            .navbar{
+                background-color: #ff4655;
+            }
+            .navbar-brand, .nav-link{
+                color: #E5E5E5 !important;
             }
             .navbar-nav .nav-link.active{
-                color: #ff4655 !important;
+                color: #E5E5E5 !important;
                 font-weight: bold;
             }
             .dropdown-menu{
@@ -36,18 +52,38 @@
                 background-color: #ff4655;
                 color: #ffffff;
             }
+            .card{
+                background-color: #1F2A37;
+                border: none;
+                color: #E5E5E5;
+            }
+            .card-title{
+                color: #ff4655;
+            }
+            .footer{
+                background-color: #0F1923;
+                padding: 20px 0;
+                text-align: center;
+                color: #E5E5E5;
+            }
+            .pagination .page-link{
+                background-color: #1F2A37;
+                color: #E5E5E5;
+                border: none;
+            }
+            .pagination .page-link:hover{
+                background-color: #ff4655;
+                color: #ffffff;
+            }
+            .pagination .page-item.active .page-link{
+                background-color: #ff4655;
+                border: none;
+            }
         </style>
     </head>
     <body>
-        <?php
-            $url = 'https://valorant-api.com/v1/maps?language=pt-BR';
-            $ch = curl_init($url);
-            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-            $resultado = json_decode(curl_exec($ch));
-        ?>
         <div class="container">
-            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <nav class="navbar navbar-expand-lg">
                 <div class="container-fluid">
                     <a class="navbar-brand" href="#">Valorant API</a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -107,7 +143,7 @@
             <h2 class="mt-4">Mapas</h2>
             <div class="row">
                 <?php
-                    foreach($resultado->data as $mapa){
+                    foreach($currentMapas as $mapa){
                         $id = str_replace("https://valorant-api.com/v1/maps/", "", $mapa->uuid);
                 ?>
                 <div class="col-md-3 mb-4">
@@ -117,11 +153,12 @@
                             <h5 class="card-title" style="color: #ff4655"><?php echo $mapa->displayName; ?></h5>
                             <p class="card-text">
                                 <b style="color: #ff4655">Coordenadas: </b><?php echo $mapa->coordinates; ?><br>
-                                <b style="color: #ff4655">Nome da região:</b>
+                                <br>
+                                <b style="color: #ff4655">Nome da região</b>
                                 <ul>
                                     <?php
                                         foreach($mapa->callouts as $callout){
-                                            echo "<li>".$callout->regionName."</li>";
+                                            echo "<li>".$callout->regionName. " " . "(" .$callout->regionName. ")"."</li>";
                                         }
                                     ?>
                                 </ul>
@@ -134,6 +171,18 @@
                     }
                 ?>
             </div>
+            <nav>
+                <ul class="pagination justify-content-center">
+                    <?php for($i = 1; $i <= $totalPages; $i++): ?>
+                        <li class="page-item <?php if($i == $currentPage) echo 'active'; ?>"><a class="page-link" href="?page=<?php echo $i; ?>"><?php echo $i; ?></a></li>
+                    <?php endfor; ?>
+                </ul>
+            </nav>
         </div>
+        <footer class="footer">
+            <div class="container">
+                <p>&copy; 2024 Valorant. All rights reserved.</p>
+            </div>
+        </footer>
     </body>
 </html>
