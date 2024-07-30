@@ -152,7 +152,7 @@
                         <div class="card-body">
                             <h5 class="card-title" style="color: #ff4655"><?php echo $modo->displayName; ?></h5>
                             <p class="card-text">
-                            <b style="color: #ff4655">Descrição:</b> <?php echo $modo->description; ?><br>
+                                <b style="color: #ff4655">Descrição:</b> <?php echo $modo->description; ?><br>
                                 <b style="color: #ff4655">Duração:</b> <?php echo $modo->duration; ?><br>
                             </p>
                         </div>
