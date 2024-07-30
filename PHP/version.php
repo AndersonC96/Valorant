@@ -19,42 +19,42 @@
         <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="../css/table.css" />
         <style>
-            body {
+            body{
                 font-family: 'Montserrat', sans-serif;
                 background-color: #0F1923;
                 color: #E5E5E5;
             }
-            .navbar {
+            .navbar{
                 background-color: #ff4655;
             }
-            .navbar-brand, .nav-link {
+            .navbar-brand, .nav-link{
                 color: #E5E5E5 !important;
             }
-            .navbar-nav .nav-link.active {
+            .navbar-nav .nav-link.active{
                 color: #E5E5E5 !important;
                 font-weight: bold;
             }
-            .dropdown-menu {
+            .dropdown-menu{
                 background-color: #1c1c1c;
                 border: none;
             }
-            .dropdown-menu .dropdown-item {
+            .dropdown-menu .dropdown-item{
                 color: #ffffff;
             }
-            .dropdown-menu .dropdown-item:hover {
+            .dropdown-menu .dropdown-item:hover{
                 background-color: #ff4655;
                 color: #ffffff;
             }
-            .table {
+            .table{
                 background-color: #1F2A37;
                 color: #E5E5E5;
                 border: none;
             }
-            .table th {
+            .table th{
                 color: #ff4655;
                 background-color: #1F2A37;
             }
-            .footer {
+            .footer{
                 background-color: #0F1923;
                 padding: 20px 0;
                 text-align: center;
@@ -138,7 +138,7 @@
                             echo "<td>" . $resultado->data->branch . "</td>";
                             echo "<td>" . $resultado->data->version . "</td>";
                             echo "<td>" . $resultado->data->buildVersion . "</td>";
-                            echo "<td>". date('d/m/Y', strtotime($resultado->data->buildDate)) . "</td>";
+                            echo "<td>" . date('d/m/Y', strtotime($resultado->data->buildDate)) . "</td>";
                             echo "</tr>";
                         ?>
                     </tbody>
