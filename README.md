@@ -36,8 +36,7 @@
     ```
 
 5. Configure a API key do Valorant:
-    - Acesse (Valorant-Api)[https://valorant-api.com/].
-    - [GitHub](https://github.com)
+    - Acesse [Valorant-Api](https://valorant-api.com/).
 
 ## Uso
 
