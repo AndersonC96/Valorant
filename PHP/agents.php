@@ -11,18 +11,22 @@
         <embed name="myMusic" loop="true" hidden="true" src="./music.mp3">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="../css/table.css" />
         <style>
-            .navbar-brand{
-                font-weight: bold;
-                color: #ff4655 !important;
+            body{
+                font-family: 'Montserrat', sans-serif;
+                background-color: #0F1923;
+                color: #E5E5E5;
             }
-            .navbar-nav .nav-link{
-                color: #ffffff !important;
-                margin-right: 10px;
+            .navbar{
+                background-color: #ff4655;
+            }
+            .navbar-brand, .nav-link{
+                color: #E5E5E5 !important;
             }
             .navbar-nav .nav-link.active{
-                color: #ff4655 !important;
+                color: #E5E5E5 !important;
                 font-weight: bold;
             }
             .dropdown-menu{
@@ -36,6 +40,23 @@
                 background-color: #ff4655;
                 color: #ffffff;
             }
+            .card{
+                background-color: #1F2A37;
+                border: none;
+                color: #E5E5E5;
+            }
+            .card-title{
+                color: #ff4655;
+            }
+            .card-text b{
+                color: #ff4655;
+            }
+            .footer{
+                background-color: #0F1923;
+                padding: 20px 0;
+                text-align: center;
+                color: #E5E5E5;
+            }
         </style>
     </head>
     <body>
@@ -47,7 +68,7 @@
             $resultado = json_decode(curl_exec($ch));
         ?>
         <div class="container">
-            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <nav class="navbar navbar-expand-lg">
                 <div class="container-fluid">
                     <a class="navbar-brand" href="#">Valorant API</a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -114,16 +135,16 @@
                     <div class="card" style="width: 18rem;">
                         <img class="card-img-top" src="<?php echo $agente->displayIcon; ?>" alt="Imagem do agente <?php echo $agente->displayName; ?>">
                         <div class="card-body">
-                            <h5 class="card-title" style="color: #ff4655"><?php echo $agente->displayName; ?></h5>
+                            <h5 class="card-title"><?php echo $agente->displayName; ?></h5>
                             <p class="card-text">
-                                <b style="color: #ff4655">Descrição:</b> <?php echo $agente->description; ?><br>
-                                <b style="color: #ff4655">Nome de desenvolvimento:</b> <?php echo $agente->developerName; ?> <br>
-                                <b style="color: #ff4655">Papel:</b> <?php echo $agente->role->displayName; ?><br>
-                                <b style="color: #ff4655">Habilidades:</b>
+                                <b>Descrição:</b> <?php echo $agente->description; ?><br>
+                                <b>Nome de desenvolvimento:</b> <?php echo $agente->developerName; ?> <br>
+                                <b>Papel:</b> <?php echo $agente->role->displayName; ?> (<i><?php echo $agente->role->description; ?></i>)<br>
+                                <b>Habilidades:</b>
                                 <ul>
                                     <?php
                                         foreach($agente->abilities as $habilidade){
-                                            echo "<li>".$habilidade->displayName."</li>";
+                                            echo "<li>".$habilidade->displayName. " " . "(<i>$habilidade->description</i>)"."</li>";
                                         }
                                     ?>
                                 </ul>
@@ -136,5 +157,10 @@
                 ?>
             </div>
         </div>
+        <footer class="footer">
+            <div class="container">
+                <p>&copy; 2024 Valorant. All rights reserved.</p>
+            </div>
+        </footer>
     </body>
 </html>
