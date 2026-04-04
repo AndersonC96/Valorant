@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Core;
 
+use App\Controllers\ErrorController;
+
 final class Router
 {
     /** @var array<string, callable> */
@@ -19,9 +21,7 @@ final class Router
         $key = strtoupper($method) . ' ' . $this->normalize($uriPath);
 
         if (!isset($this->routes[$key])) {
-            http_response_code(404);
-            header('Content-Type: text/html; charset=utf-8');
-            echo '<h1>404</h1><p>Rota não encontrada.</p>';
+            (new ErrorController())->notFound($uriPath);
             return;
         }
 

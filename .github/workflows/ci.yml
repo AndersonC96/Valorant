@@ -28,3 +28,6 @@ jobs:
 
       - name: Run PHP CS Fixer (PSR-12)
         run: php-cs-fixer fix --dry-run --diff --using-cache=no --rules=@PSR12 .
+
+      - name: Run PHPUnit
+        run: vendor/bin/phpunit

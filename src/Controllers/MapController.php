@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Controllers;
 
+use App\Core\View;
 use App\Services\ValorantApiService;
 
 final class MapController
@@ -16,6 +17,10 @@ final class MapController
     {
         $maps = $this->service->getMaps($_ENV['API_LANGUAGE'] ?? 'pt-BR');
 
-        require __DIR__ . '/../Views/maps/index.php';
+        View::render('maps/index', [
+            'title' => 'Mapas',
+            'active' => 'mapas',
+            'maps' => $maps,
+        ]);
     }
 }

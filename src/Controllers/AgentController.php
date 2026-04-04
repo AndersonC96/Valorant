@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Controllers;
 
+use App\Core\View;
 use App\Services\ValorantApiService;
 
 final class AgentController
@@ -16,6 +17,10 @@ final class AgentController
     {
         $agents = $this->service->getAgents($_ENV['API_LANGUAGE'] ?? 'pt-BR');
 
-        require __DIR__ . '/../Views/agents/index.php';
+        View::render('agents/index', [
+            'title' => 'Agentes',
+            'active' => 'agentes',
+            'agents' => $agents,
+        ]);
     }
 }

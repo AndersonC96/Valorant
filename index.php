@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use App\Controllers\AgentController;
+use App\Controllers\CollectionController;
 use App\Controllers\MapController;
 use App\Core\Router;
 use App\Services\ValorantApiService;
@@ -16,8 +17,12 @@ $dotenv->safeLoad();
 $service = new ValorantApiService();
 $router = new Router();
 
-$router->get('/', static function (): void {
-    header('Location: /agentes');
+$scriptDir = str_replace('\\', '/', dirname($_SERVER['SCRIPT_NAME'] ?? ''));
+$basePath = ($scriptDir === '/' || $scriptDir === '.') ? '' : rtrim($scriptDir, '/');
+$toPath = static fn(string $path): string => ($basePath === '' ? $path : $basePath . $path);
+
+$router->get('/', static function () use ($toPath): void {
+    header('Location: ' . $toPath('/colecoes'));
     exit;
 });
 
@@ -29,10 +34,17 @@ $router->get('/mapas', static function () use ($service): void {
     (new MapController($service))->index();
 });
 
+$router->get('/colecoes', static function (): void {
+    (new CollectionController())->index();
+});
+
+$router->get('/collections', static function (): void {
+    (new CollectionController())->index();
+});
+
 $uri = $_SERVER['REQUEST_URI'] ?? '/';
 $path = parse_url($uri, PHP_URL_PATH) ?: '/';
 
-$scriptDir = str_replace('\\', '/', dirname($_SERVER['SCRIPT_NAME'] ?? ''));
 if ($scriptDir !== '/' && $scriptDir !== '.') {
     if (str_starts_with($path, $scriptDir)) {
         $path = substr($path, strlen($scriptDir)) ?: '/';
