@@ -36,6 +36,21 @@ final class RouterTest extends TestCase
         self::assertSame(200, http_response_code(), 'O código HTTP não deveria mudar em uma rota válida.');
     }
 
+    public function testDispatchesDynamicRouteParametersToHandler(): void
+    {
+        $router = new Router();
+        $receivedUuid = null;
+
+        $router->get('/agentes/{uuid}', static function (string $uuid) use (&$receivedUuid): void {
+            $receivedUuid = $uuid;
+        });
+
+        $router->dispatch('GET', '/agentes/7edff3e3-3b78-5f1a-8d7f-8f8c2b2a1f7a');
+
+        self::assertSame('7edff3e3-3b78-5f1a-8d7f-8f8c2b2a1f7a', $receivedUuid);
+        self::assertSame(200, http_response_code(), 'O código HTTP não deveria mudar em uma rota dinâmica válida.');
+    }
+
     public function testReturns404ForUnregisteredRoute(): void
     {
         $router = new Router();

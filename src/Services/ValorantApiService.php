@@ -40,6 +40,14 @@ final class ValorantApiService
         return $this->fetchList('maps', ['language' => $language]);
     }
 
+    /**
+     * @return array<int, array<string, mixed>>
+     */
+    public function fetchCollection(string $endpoint, string $language = 'pt-BR'): array
+    {
+        return $this->fetchList(ltrim($endpoint, '/'), ['language' => $language]);
+    }
+
     /** @return array<int, array<string, mixed>> */
     private function fetchList(string $endpoint, array $query = []): array
     {

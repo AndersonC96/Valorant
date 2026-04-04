@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use App\Controllers\AgentController;
+use App\Controllers\Api\CollectionApiController;
 use App\Controllers\CollectionController;
 use App\Controllers\MapController;
 use App\Core\Router;
@@ -40,6 +41,10 @@ $router->get('/colecoes', static function (): void {
 
 $router->get('/collections', static function (): void {
     (new CollectionController())->index();
+});
+
+$router->get('/api/collections', static function () use ($service): void {
+    (new CollectionApiController($service))->index();
 });
 
 $uri = $_SERVER['REQUEST_URI'] ?? '/';
