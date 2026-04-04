@@ -1,0 +1,1 @@
+{"version":2,"defects":[],"times":{"Tests\\Unit\\RouterTest::testRegistersGetRouteAndExecutesHandler":0.008,"Tests\\Unit\\RouterTest::testReturns404ForUnregisteredRoute":0.001}}

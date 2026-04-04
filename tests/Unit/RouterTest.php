@@ -15,6 +15,12 @@ final class RouterTest extends TestCase
         http_response_code(200);
     }
 
+    protected function tearDown(): void
+    {
+        http_response_code(200);
+        parent::tearDown();
+    }
+
     public function testRegistersGetRouteAndExecutesHandler(): void
     {
         $router = new Router();
@@ -35,8 +41,11 @@ final class RouterTest extends TestCase
         $router = new Router();
 
         ob_start();
-        $router->dispatch('GET', '/rota-inexistente');
-        $output = (string) ob_get_clean();
+        try {
+            $router->dispatch('GET', '/rota-inexistente');
+        } finally {
+            $output = (string) ob_get_clean();
+        }
 
         self::assertSame(404, http_response_code(), 'A rota inexistente deve devolver HTTP 404.');
         self::assertStringContainsString('Página não encontrada', $output);
