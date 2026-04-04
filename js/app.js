@@ -26,6 +26,7 @@
         type: appRoot.getAttribute('data-initial-type') || 'agents',
         page: 1,
         totalPages: 1,
+        pageSize: Number(appRoot.getAttribute('data-page-size') || 10),
     };
 
     const setStatus = (text, mode = 'loading') => {
@@ -42,7 +43,12 @@
 
     const renderCard = (card) => {
         const media = card.image
-            ? `<div class="card__media"><img src="${escapeHtml(card.image)}" alt="${escapeHtml(card.title)}"></div>`
+            ? `
+                <div class="card__media">
+                    <div class="card__media-skeleton" aria-hidden="true"></div>
+                    <img class="card__media-img" data-skeleton-image src="${escapeHtml(card.image)}" alt="${escapeHtml(card.title)}" loading="lazy">
+                </div>
+            `
             : '<div class="card__media"></div>';
 
         const meta = Array.isArray(card.meta)
@@ -64,6 +70,64 @@
                 </div>
             </article>
         `;
+    };
+
+    const renderSkeletonCards = (count = 10) => {
+        const total = Math.max(1, count);
+        const skeletons = Array.from({ length: total }).map(() => `
+            <article class="card card--skeleton" aria-hidden="true">
+                <div class="card__media">
+                    <div class="skeleton skeleton--media"></div>
+                </div>
+                <div class="card__body">
+                    <div class="skeleton skeleton--title"></div>
+                    <div class="skeleton skeleton--line"></div>
+                    <div class="skeleton skeleton--line short"></div>
+                </div>
+            </article>
+        `);
+
+        grid.innerHTML = skeletons.join('');
+    };
+
+    const renderEmptyState = ({ titleText, descriptionText }) => {
+        grid.innerHTML = `
+            <section class="empty-state" role="status" aria-live="polite">
+                <div class="empty-state__icon" aria-hidden="true">
+                    <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" focusable="false">
+                        <circle cx="24" cy="24" r="20" fill="none" stroke="currentColor" stroke-width="2"></circle>
+                        <path d="M16 20h16M16 26h11M16 32h8" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+                    </svg>
+                </div>
+                <h3>${escapeHtml(titleText)}</h3>
+                <p>${escapeHtml(descriptionText)}</p>
+            </section>
+        `;
+    };
+
+    const hydrateCardImages = () => {
+        grid.querySelectorAll('img[data-skeleton-image]').forEach((img) => {
+            const media = img.closest('.card__media');
+            if (!media) {
+                return;
+            }
+
+            const markLoaded = () => {
+                media.classList.add('is-loaded');
+            };
+
+            const markError = () => {
+                media.classList.add('is-error');
+            };
+
+            if (img.complete && img.naturalWidth > 0) {
+                markLoaded();
+                return;
+            }
+
+            img.addEventListener('load', markLoaded, { once: true });
+            img.addEventListener('error', markError, { once: true });
+        });
     };
 
     const renderPagination = () => {
@@ -100,7 +164,7 @@
         state.page = page;
         setActiveChip();
         setStatus('Carregando dados da coleção...', 'loading');
-        grid.innerHTML = '';
+        renderSkeletonCards(state.pageSize);
         pagination.innerHTML = '';
 
         try {
@@ -122,14 +186,23 @@
 
             if (!Array.isArray(payload.cards) || payload.cards.length === 0) {
                 setStatus('Nenhum item disponível para esta coleção.', 'empty');
+                renderEmptyState({
+                    titleText: 'Nada para exibir no momento',
+                    descriptionText: 'Tente selecionar outra coleção ou atualizar a página.',
+                });
                 return;
             }
 
             setStatus(`Exibindo ${payload.cards.length} itens nesta página.`, 'default');
             grid.innerHTML = payload.cards.map(renderCard).join('');
+            hydrateCardImages();
             renderPagination();
         } catch (error) {
             setStatus(error.message || 'Erro inesperado ao carregar os dados da coleção.', 'error');
+            renderEmptyState({
+                titleText: 'Não foi possível carregar a coleção',
+                descriptionText: 'A API do Valorant está indisponível ou retornou uma resposta inválida. Tente novamente em instantes.',
+            });
         }
     };
 

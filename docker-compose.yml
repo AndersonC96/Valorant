@@ -1,0 +1,22 @@
+version: "3.9"
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: valorant-atlas
+    ports:
+      - "80:80"
+    environment:
+      APP_ENV: local
+      APP_DEBUG: "true"
+      APP_TIMEZONE: America/Sao_Paulo
+      APP_LOCALE: pt-BR
+      API_BASE_URL: https://valorant-api.com/v1
+      API_TIMEOUT: "10"
+      API_CONNECT_TIMEOUT: "5"
+      API_LANGUAGE: pt-BR
+    volumes:
+      - ./:/var/www/html
+    restart: unless-stopped
