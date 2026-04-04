@@ -48,6 +48,26 @@ final class ValorantApiService
         return $this->fetchList(ltrim($endpoint, '/'), ['language' => $language]);
     }
 
+    /**
+     * @return array<string, mixed>|null
+     */
+    public function fetchItemByUuid(string $endpoint, string $uuid, string $language = 'pt-BR'): ?array
+    {
+        $items = $this->fetchCollection($endpoint, $language);
+
+        foreach ($items as $item) {
+            if (!is_array($item)) {
+                continue;
+            }
+
+            if ((string) ($item['uuid'] ?? '') === $uuid) {
+                return $item;
+            }
+        }
+
+        return null;
+    }
+
     /** @return array<int, array<string, mixed>> */
     private function fetchList(string $endpoint, array $query = []): array
     {

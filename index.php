@@ -3,9 +3,13 @@
 declare(strict_types=1);
 
 use App\Controllers\AgentController;
+use App\Controllers\BuddyController;
 use App\Controllers\Api\CollectionApiController;
 use App\Controllers\CollectionController;
+use App\Controllers\ModeController;
 use App\Controllers\MapController;
+use App\Controllers\SpecsController;
+use App\Controllers\WeaponController;
 use App\Core\Router;
 use App\Services\ValorantApiService;
 use Dotenv\Dotenv;
@@ -41,6 +45,22 @@ $router->get('/colecoes', static function (): void {
 
 $router->get('/collections', static function (): void {
     (new CollectionController())->index();
+});
+
+$router->get('/armas/{uuid}', static function (string $uuid) use ($service): void {
+    (new WeaponController($service))->show($uuid);
+});
+
+$router->get('/companheiros/{uuid}', static function (string $uuid) use ($service): void {
+    (new BuddyController($service))->show($uuid);
+});
+
+$router->get('/modos/{uuid}', static function (string $uuid) use ($service): void {
+    (new ModeController($service))->show($uuid);
+});
+
+$router->get('/requisitos', static function (): void {
+    (new SpecsController())->index();
 });
 
 $router->get('/api/collections', static function () use ($service): void {
