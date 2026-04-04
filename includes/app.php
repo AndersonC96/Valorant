@@ -242,6 +242,32 @@ function api_fetch_item(string $endpoint, string $language = DEFAULT_LANGUAGE): 
     ];
 }
 
+function api_find_item_by_uuid(string $endpoint, string $uuid, string $language = DEFAULT_LANGUAGE): array
+{
+    $result = api_fetch($endpoint, $language);
+    if (!$result['ok']) {
+        return $result;
+    }
+
+    foreach ($result['data'] as $item) {
+        if (is_array($item) && (string) ($item['uuid'] ?? '') === $uuid) {
+            return [
+                'ok' => true,
+                'status' => $result['status'],
+                'error' => '',
+                'data' => $item,
+            ];
+        }
+    }
+
+    return [
+        'ok' => false,
+        'status' => 404,
+        'error' => 'Item nao encontrado para o UUID informado.',
+        'data' => [],
+    ];
+}
+
 function safe_get(array $source, array $path, mixed $default = null): mixed
 {
     $cursor = $source;
@@ -301,6 +327,12 @@ function card_from_item(string $type, array $item): array
             $base['meta'][] = ['label' => 'Categoria', 'value' => safe_get($item, ['shopData', 'categoryText'], 'Nao informado')];
             $base['meta'][] = ['label' => 'Custo', 'value' => safe_get($item, ['shopData', 'cost'], 'N/A')];
             $base['description'] = 'Arma utilizada em confrontos taticos do universo Valorant.';
+            if (!empty($item['uuid'])) {
+                $base['action'] = [
+                    'label' => 'Ver arma completa',
+                    'url' => 'weapon.php?uuid=' . rawurlencode((string) $item['uuid']),
+                ];
+            }
             break;
 
         case 'maps':
@@ -309,23 +341,59 @@ function card_from_item(string $type, array $item): array
             $callouts = isset($item['callouts']) && is_array($item['callouts']) ? count($item['callouts']) : 0;
             $base['meta'][] = ['label' => 'Callouts', 'value' => $callouts . ' regioes'];
             $base['description'] = $item['narrativeDescription'] ?? $base['description'];
+            if (!empty($item['uuid'])) {
+                $base['action'] = [
+                    'label' => 'Ver mapa completo',
+                    'url' => 'map.php?uuid=' . rawurlencode((string) $item['uuid']),
+                ];
+            }
             break;
 
         case 'gamemodes':
             $base['image'] = $item['displayIcon'] ?? null;
             $base['description'] = $item['duration'] ?? $base['description'];
             $base['meta'][] = ['label' => 'ID', 'value' => $item['uuid'] ?? 'N/A'];
+            if (!empty($item['uuid'])) {
+                $base['action'] = [
+                    'label' => 'Ver modo completo',
+                    'url' => 'mode.php?uuid=' . rawurlencode((string) $item['uuid']),
+                ];
+            }
+            break;
+
+        case 'buddies':
+            $base['image'] = $item['displayIcon'] ?? null;
+            $levels = isset($item['levels']) && is_array($item['levels']) ? count($item['levels']) : 0;
+            $base['meta'][] = ['label' => 'Niveis', 'value' => (string) $levels];
+            $base['meta'][] = ['label' => 'Oculto sem posse', 'value' => (!empty($item['isHiddenIfNotOwned']) ? 'Sim' : 'Nao')];
+            $base['description'] = 'Companheiro cosmetico para personalizacao de armamento.';
+            if (!empty($item['uuid'])) {
+                $base['action'] = [
+                    'label' => 'Ver companheiro completo',
+                    'url' => 'buddy.php?uuid=' . rawurlencode((string) $item['uuid']),
+                ];
+            }
             break;
 
         case 'version':
             $base['title'] = 'Versao atual da API';
             $base['description'] = 'Controle de versao retornado pelo endpoint oficial.';
             $base['meta'][] = ['label' => 'Version', 'value' => $item['version'] ?? 'Nao disponivel'];
+            $base['action'] = [
+                'label' => 'Ver detalhes da versao',
+                'url' => 'entity.php?type=version',
+            ];
             break;
 
         default:
             $base['image'] = $item['displayIcon'] ?? $item['fullRender'] ?? $item['displayIconSmall'] ?? null;
             $base['meta'][] = ['label' => 'UUID', 'value' => $item['uuid'] ?? 'Nao informado'];
+            if (!empty($item['uuid'])) {
+                $base['action'] = [
+                    'label' => 'Ver detalhes completos',
+                    'url' => 'entity.php?type=' . rawurlencode($type) . '&uuid=' . rawurlencode((string) $item['uuid']),
+                ];
+            }
             break;
     }
 
