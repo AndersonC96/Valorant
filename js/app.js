@@ -29,7 +29,7 @@
     };
 
     const setStatus = (text, mode = 'loading') => {
-        status.className = `status status--${mode}`;
+        status.className = mode === 'default' ? 'status' : `status status--${mode}`;
         status.textContent = text;
     };
 
@@ -58,7 +58,7 @@
                 ${media}
                 <div class="card__body">
                     <h3 class="card__title">${escapeHtml(card.title)}</h3>
-                    <p class="card__text">${escapeHtml(card.description || 'Sem descricao para este item.')}</p>
+                    <p class="card__text">${escapeHtml(card.description || 'Sem descrição disponível para este item.')}</p>
                     ${meta}
                     ${action}
                 </div>
@@ -75,12 +75,12 @@
         prev.addEventListener('click', () => loadData(state.type, state.page - 1));
 
         const next = document.createElement('button');
-        next.textContent = 'Proxima';
+        next.textContent = 'Próxima';
         next.disabled = state.page >= state.totalPages;
         next.addEventListener('click', () => loadData(state.type, state.page + 1));
 
         const current = document.createElement('span');
-        current.textContent = `Pagina ${state.page} de ${state.totalPages}`;
+        current.textContent = `Página ${state.page} de ${state.totalPages}`;
 
         pagination.append(prev, current, next);
     };
@@ -99,7 +99,7 @@
         state.type = type;
         state.page = page;
         setActiveChip();
-        setStatus('Carregando dados da API do Valorant...', 'loading');
+        setStatus('Carregando dados da coleção...', 'loading');
         grid.innerHTML = '';
         pagination.innerHTML = '';
 
@@ -108,7 +108,7 @@
             const payload = await response.json();
 
             if (!payload.ok) {
-                throw new Error(payload.error || 'Falha ao obter dados.');
+                throw new Error(payload.error || 'Não foi possível obter os dados da coleção.');
             }
 
             if (title) {
@@ -121,16 +121,15 @@
             state.totalPages = payload.totalPages;
 
             if (!Array.isArray(payload.cards) || payload.cards.length === 0) {
-                setStatus('Nenhum item encontrado para esta colecao.', 'loading');
+                setStatus('Nenhum item disponível para esta coleção.', 'empty');
                 return;
             }
 
-            status.textContent = `Mostrando ${payload.cards.length} itens.`;
-            status.className = 'status';
+            setStatus(`Exibindo ${payload.cards.length} itens nesta página.`, 'default');
             grid.innerHTML = payload.cards.map(renderCard).join('');
             renderPagination();
         } catch (error) {
-            setStatus(error.message || 'Erro inesperado ao carregar os dados.', 'error');
+            setStatus(error.message || 'Erro inesperado ao carregar os dados da coleção.', 'error');
         }
     };
 

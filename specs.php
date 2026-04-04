@@ -4,16 +4,16 @@ declare(strict_types=1);
 
 require_once __DIR__ . '/includes/layout.php';
 
-render_head('Valorant Atlas | Requisitos', 'Requisitos minimos, recomendados e high-end para rodar Valorant no PC.');
+render_head('Valorant Atlas | Requisitos', 'Requisitos mínimos, recomendados e high-end para rodar Valorant no PC.');
 render_header('specs');
 ?>
 <section class="hero">
     <div>
-        <p class="hero__eyebrow">Preparacao Tecnica</p>
-        <h1>Requisitos de hardware para uma experiencia competitiva estavel</h1>
+        <p class="hero__eyebrow">Preparação Técnica</p>
+        <h1>Requisitos de hardware para uma experiência competitiva estável</h1>
         <p>
-            Esta secao concentra os requisitos de maquina de forma objetiva para ajudar no planejamento de desempenho.
-            O foco e facilitar comparacao entre niveis de configuracao sem ruido visual.
+            Esta seção reúne os requisitos de máquina de forma objetiva para facilitar o planejamento de desempenho.
+            O foco é comparar níveis de configuração com clareza e sem ruído visual.
         </p>
     </div>
     <aside class="hero__panel" aria-label="Imagem de mapa do Valorant">
@@ -29,15 +29,15 @@ render_header('specs');
             <p>Windows 10 ou 11 64-bit.</p>
         </article>
         <article class="spec-item">
-            <h3>Memoria RAM</h3>
-            <p>Minimo de 4 GB para inicializacao estavel do jogo.</p>
+            <h3>Memória RAM</h3>
+            <p>Mínimo de 4 GB para inicialização estável do jogo.</p>
         </article>
         <article class="spec-item">
             <h3>Video (VRAM)</h3>
             <p>1 GB de VRAM como base para o perfil de entrada.</p>
         </article>
         <article class="spec-item">
-            <h3>Seguranca</h3>
+            <h3>Segurança</h3>
             <p>No Windows 11, TPM 2.0 e Secure Boot habilitados sao obrigatorios.</p>
         </article>
     </div>
@@ -47,7 +47,7 @@ render_header('specs');
     <h2>Perfis de desempenho</h2>
     <div class="spec-grid">
         <article class="spec-item">
-            <h3>Minimo - 30 FPS</h3>
+            <h3>Mínimo - 30 FPS</h3>
             <p><strong>CPU:</strong> Intel Core 2 Duo E8400 ou Athlon 200GE</p>
             <p><strong>GPU:</strong> Intel HD 4000 ou Radeon R5 200</p>
         </article>

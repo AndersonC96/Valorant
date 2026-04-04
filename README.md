@@ -1,74 +1,66 @@
 # Valorant Atlas
 
-Valorant Atlas e uma aplicacao web em PHP focada em exploracao de dados do universo Valorant com curadoria visual, navegacao consistente e consumo robusto da API publica Valorant-API.
-
-O projeto foi reestruturado para sair do modelo de paginas duplicadas por endpoint e evoluir para uma arquitetura unificada, com componentes compartilhados, tratamento de erro e padrao visual unico.
+Valorant Atlas é uma aplicação web em PHP para explorar dados oficiais do universo Valorant com interface unificada, navegação consistente e foco em legibilidade.
 
 ## Proposta
 
-Entregar uma experiencia de portfolio com foco em qualidade de interface e sustentabilidade do codigo, priorizando:
+O projeto organiza coleções da Valorant-API em uma experiência única, com prioridade para:
 
-- exploracao das colecoes mais importantes (agentes, armas, mapas e modos)
-- navegacao coesa entre home, colecoes e requisitos
-- feedback claro para falha de rede, resposta invalida e estado vazio
-- organizacao modular para evitar repeticao de layout e logica
+- clareza de navegação
+- consistência visual entre páginas
+- tratamento adequado de erro, vazio e indisponibilidade
+- código reutilizável para renderização e consumo da API
 
-## Funcionalidades principais
+## Funcionalidades
 
-- Home page orientada a produto, com destaque para colecoes principais e panorama em tempo real.
-- Biblioteca unificada de colecoes com carregamento dinamico via endpoint interno.
-- Filtros por tipo de colecao com paginacao, estado de carregamento e estado de erro.
-- Requisitos tecnicos organizados em layout semantico e responsivo.
-- Compatibilidade com links legados das paginas antigas, via redirecionamento para a nova interface.
+- Home com visão geral das coleções principais.
+- Biblioteca unificada de coleções com paginação e filtros por tipo.
+- Páginas de detalhe para entidades principais (agentes, armas, mapas, modos e companheiros).
+- Visualização técnica genérica para coleções sem página dedicada.
+- Página de requisitos de hardware em formato objetivo e responsivo.
 
 ## Stack
 
-- PHP 8+ (renderizacao server-side e endpoint interno)
-- HTML semantico
-- CSS customizado com design system centralizado
-- JavaScript vanilla para interacao da biblioteca de colecoes
-- Valorant-API publica (https://valorant-api.com)
+- PHP 8+
+- HTML semântico
+- CSS com design system próprio
+- JavaScript vanilla
+- Valorant-API pública: https://valorant-api.com
 
-## Como executar localmente
+## Execução local
 
-1. Clone o repositorio:
+1. Clone o repositório:
 
    git clone https://github.com/AndersonCav/Valorant.git
 
-2. Coloque a pasta do projeto em um servidor local com PHP (por exemplo, XAMPP em htdocs).
+2. Coloque a pasta em um servidor local com PHP (exemplo: XAMPP em htdocs).
 
-3. Inicie Apache e acesse:
+3. Inicie o Apache e acesse:
 
    http://localhost/Valorant
 
-Nao e necessario token ou API key para usar os endpoints publicos atuais da Valorant-API.
+Não é necessário token ou API key para os endpoints públicos atualmente utilizados.
 
 ## Estrutura do projeto
 
-- index.php: home da aplicacao
-- collections.php: experiencia principal de exploracao de dados
-- specs.php: pagina de requisitos tecnicos
-- api/collection.php: endpoint interno para normalizar resposta de colecoes
-- includes/app.php: configuracao de colecoes, cliente HTTP e helpers
-- includes/layout.php: layout compartilhado (head, header e footer)
-- css/app.css: design system global
-- js/app.js: navegacao mobile e consumo dinamico da biblioteca
-- PHP/*.php: redirecionamentos legados para preservar rotas antigas
+- index.php: página inicial
+- collections.php: navegação principal das coleções
+- specs.php: requisitos de hardware
+- agent.php, weapon.php, map.php, mode.php, buddy.php: páginas de detalhe dedicadas
+- entity.php: visualização genérica de item
+- api/collection.php: endpoint interno para paginação e resposta padronizada
+- includes/app.php: configuração das coleções, cliente da API e helpers
+- includes/layout.php: head, header e footer compartilhados
+- css/app.css: estilos globais
+- js/app.js: navegação mobile e carregamento dinâmico da biblioteca
+- PHP/*.php: redirecionamentos legados
 
-## Decisoes de arquitetura
+## Observações
 
-- Consolidacao de paginas repetidas em uma unica experiencia de colecoes.
-- Eliminacao de CSS inline e de estilos duplicados.
-- Remocao de recursos que prejudicavam UX, como autoplay de audio embutido.
-- Tratamento explicito de falhas de cURL, status HTTP invalido e payload inconsistente.
-- Acesso seguro a campos aninhados da API para reduzir erros por dados nulos.
+- A aplicação depende da disponibilidade da Valorant-API.
+- Campos e mídias podem variar conforme o endpoint.
+- Em caso de falha da API, a interface exibe mensagens de erro e mantém navegação funcional.
 
-## Limitacoes e observacoes
+## Licença e marcas
 
-- A aplicacao depende da disponibilidade da Valorant-API publica.
-- Parte do conteudo visual (imagens) pode variar de qualidade conforme o endpoint.
-- Em caso de indisponibilidade da API, a interface exibe feedback de erro, mas nao usa cache local.
-
-## Licenca e marcas
-
-Este projeto e independente e educacional. Valorant e marcas associadas pertencem a Riot Games.
+Projeto independente para estudo e portfólio técnico. Valorant e marcas associadas pertencem à Riot Games.

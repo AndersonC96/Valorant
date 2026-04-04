@@ -8,13 +8,13 @@ $allCollections = app_collections();
 $requestedType = $_GET['type'] ?? 'agents';
 $type = array_key_exists($requestedType, $allCollections) ? $requestedType : 'agents';
 
-render_head('Valorant Atlas | Colecoes', 'Explore agentes, armas, mapas e colecoes do Valorant em uma interface unificada.');
+render_head('Valorant Atlas | Coleções', 'Explore agentes, armas, mapas e coleções do Valorant em uma interface unificada.');
 render_header('collections');
 ?>
 <section class="section">
     <p class="hero__eyebrow">Biblioteca de Dados</p>
-    <h1 data-title>Colecoes</h1>
-    <p data-description>Consulte os dados oficiais da API do Valorant com visual consistente, navegacao unificada e tratamento de falhas.</p>
+    <h1 data-title>Coleções</h1>
+    <p data-description>Consulte os dados oficiais da API do Valorant com visual consistente, navegação unificada e tratamento de falhas.</p>
 
     <div class="collection-controls" data-controls>
         <?php foreach ($allCollections as $slug => $collection): ?>

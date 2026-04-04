@@ -344,6 +344,11 @@ main {
     border-color: rgba(255, 209, 102, 0.6);
 }
 
+.status--empty {
+    border-color: rgba(157, 176, 202, 0.35);
+    background: rgba(16, 27, 42, 0.9);
+}
+
 .pagination {
     margin-top: 1.3rem;
     display: flex;

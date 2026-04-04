@@ -27,20 +27,20 @@ foreach (['agents', 'weapons', 'maps'] as $type) {
     ];
 }
 
-render_head('Valorant Atlas | Inicio', 'Aplicacao de portfolio para explorar dados oficiais do universo Valorant.');
+render_head('Valorant Atlas | Início', 'Aplicação para explorar dados oficiais do universo Valorant.');
 render_header('home');
 ?>
 <section class="hero">
     <div>
-        <p class="hero__eyebrow">Portfolio Frontend + PHP</p>
+        <p class="hero__eyebrow">Aplicação Frontend + PHP</p>
         <h1>Valorant Atlas: explorador moderno de dados do universo Valorant</h1>
         <p>
-            Esta aplicacao reorganiza o consumo da Valorant-API em uma experiencia unica, com foco nas entidades mais relevantes do jogo,
-            navegacao consistente e tratamento de estados para erros, ausencia de dados e respostas incompletas.
+            O Valorant Atlas reúne os dados da Valorant-API em uma experiência coesa, com foco nas entidades mais relevantes do jogo,
+            navegação consistente e tratamento claro para erros, ausência de dados e respostas incompletas.
         </p>
         <div class="hero__actions">
             <a class="btn btn--primary" href="collections.php?type=agents">Explorar agentes</a>
-            <a class="btn btn--ghost" href="collections.php">Ver todas as colecoes</a>
+            <a class="btn btn--ghost" href="collections.php">Ver todas as coleções</a>
             <a class="btn btn--ghost" href="specs.php">Requisitos para jogar</a>
         </div>
     </div>
@@ -51,11 +51,11 @@ render_header('home');
 
 <section class="section">
     <h2>Panorama em tempo real</h2>
-    <p>Resumo das principais colecoes retornadas pela API publica. Se houver indisponibilidade, o feedback aparece abaixo.</p>
+    <p>Resumo das principais coleções retornadas pela API pública. Se houver indisponibilidade, o aviso aparece abaixo.</p>
 
     <?php if (!empty($errors)): ?>
         <div class="status status--error">
-            <strong>Algumas fontes nao responderam.</strong>
+            <strong>Algumas fontes não responderam.</strong>
             <ul>
                 <?php foreach ($errors as $error): ?>
                     <li><?php echo h($error); ?></li>
@@ -70,7 +70,7 @@ render_header('home');
                 <strong><?php echo h((string) $item['count']); ?></strong>
                 <span><?php echo h($item['label']); ?></span>
                 <p><?php echo h($item['description']); ?></p>
-                <a href="<?php echo h($item['link']); ?>">Abrir colecao</a>
+                <a href="<?php echo h($item['link']); ?>">Abrir coleção</a>
             </article>
         <?php endforeach; ?>
     </div>
@@ -82,7 +82,7 @@ render_header('home');
         <article class="card">
             <div class="card__body">
                 <h3 class="card__title">Agentes</h3>
-                <p class="card__text">Funcao tatica, identidades e contexto de gameplay para estudo de design de personagens.</p>
+                <p class="card__text">Função tática, identidades e contexto de gameplay para estudo de design de personagens.</p>
             </div>
         </article>
         <article class="card">
@@ -94,7 +94,7 @@ render_header('home');
         <article class="card">
             <div class="card__body">
                 <h3 class="card__title">Mapas</h3>
-                <p class="card__text">Visao espacial com callouts e coordenadas para orientar estrategias e navegacao.</p>
+                <p class="card__text">Visão espacial com callouts e coordenadas para orientar estratégias e navegação.</p>
             </div>
         </article>
     </div>

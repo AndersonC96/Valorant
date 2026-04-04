@@ -12,14 +12,14 @@ function app_collections(): array
         'agents' => [
             'label' => 'Agentes',
             'endpoint' => '/agents',
-            'description' => 'Funcoes, habilidades e identidades dos agentes do Valorant.',
+            'description' => 'Funções, habilidades e identidades dos agentes do Valorant.',
             'perPage' => 10,
             'featured' => true,
         ],
         'weapons' => [
             'label' => 'Armas',
             'endpoint' => '/weapons',
-            'description' => 'Arsenal completo com classe, custo e dano por distancia.',
+            'description' => 'Arsenal completo com classe, custo e dano por distância.',
             'perPage' => 10,
             'featured' => true,
         ],
@@ -33,99 +33,134 @@ function app_collections(): array
         'gamemodes' => [
             'label' => 'Modos',
             'endpoint' => '/gamemodes',
-            'description' => 'Modos de jogo e variacoes disponiveis.',
+            'description' => 'Modos de jogo e variações disponíveis.',
             'perPage' => 10,
             'featured' => true,
         ],
         'buddies' => [
             'label' => 'Companheiros',
             'endpoint' => '/buddies',
-            'description' => 'Itens cosmeticos de pingente para armas.',
-            'perPage' => 12,
+            'description' => 'Itens cosméticos de pingente para armas.',
+            'perPage' => 10,
             'featured' => false,
         ],
         'bundles' => [
             'label' => 'Bundles',
             'endpoint' => '/bundles',
-            'description' => 'Pacotes de colecoes e skins especiais.',
-            'perPage' => 12,
+            'description' => 'Pacotes de coleções e skins especiais.',
+            'perPage' => 10,
             'featured' => false,
         ],
         'ceremonies' => [
-            'label' => 'Cerimonias',
+            'label' => 'Cerimônias',
             'endpoint' => '/ceremonies',
-            'description' => 'Animacoes especiais de finalizacao e celebracao.',
-            'perPage' => 12,
+            'description' => 'Animações especiais de finalização e celebração.',
+            'perPage' => 10,
             'featured' => false,
         ],
         'content_tiers' => [
-            'label' => 'Niveis de Conteudo',
+            'label' => 'Níveis de Conteúdo',
             'endpoint' => '/contenttiers',
-            'description' => 'Camadas de raridade e classificacao visual.',
-            'perPage' => 12,
+            'description' => 'Camadas de raridade e classificação visual.',
+            'perPage' => 10,
             'featured' => false,
         ],
         'currencies' => [
             'label' => 'Moedas',
             'endpoint' => '/currencies',
-            'description' => 'Moedas e recursos economicos do jogo.',
-            'perPage' => 12,
+            'description' => 'Moedas e recursos econômicos do jogo.',
+            'perPage' => 10,
             'featured' => false,
         ],
         'events' => [
             'label' => 'Eventos',
             'endpoint' => '/events',
-            'description' => 'Eventos ativos e historicos do ecossistema.',
-            'perPage' => 12,
+            'description' => 'Eventos ativos e históricos do ecossistema.',
+            'perPage' => 10,
             'featured' => false,
         ],
         'gear' => [
             'label' => 'Equipamentos',
             'endpoint' => '/gear',
-            'description' => 'Ferramentas taticas e utilitarios de combate.',
-            'perPage' => 12,
+            'description' => 'Ferramentas táticas e utilitários de combate.',
+            'perPage' => 10,
             'featured' => false,
         ],
         'player_cards' => [
             'label' => 'Player Cards',
             'endpoint' => '/playercards',
-            'description' => 'Cartoes de perfil com artes oficiais.',
-            'perPage' => 12,
+            'description' => 'Cartões de perfil com artes oficiais.',
+            'perPage' => 10,
             'featured' => false,
         ],
         'player_titles' => [
-            'label' => 'Titulos',
+            'label' => 'Títulos',
             'endpoint' => '/playertitles',
-            'description' => 'Titulos desbloqueaveis para identidade do jogador.',
-            'perPage' => 12,
+            'description' => 'Títulos desbloqueáveis para identidade do jogador.',
+            'perPage' => 10,
             'featured' => false,
         ],
         'seasons' => [
             'label' => 'Temporadas',
             'endpoint' => '/seasons',
-            'description' => 'Atos, episodios e janelas competitivas.',
-            'perPage' => 12,
+            'description' => 'Atos, episódios e janelas competitivas.',
+            'perPage' => 10,
             'featured' => false,
         ],
         'sprays' => [
             'label' => 'Sprays',
             'endpoint' => '/sprays',
-            'description' => 'Colecao de sprays e variacoes cosmeticas.',
-            'perPage' => 12,
+            'description' => 'Coleção de sprays e variações cosméticas.',
+            'perPage' => 10,
             'featured' => false,
         ],
         'themes' => [
             'label' => 'Temas',
             'endpoint' => '/themes',
             'description' => 'Temas de interface e identidade visual.',
-            'perPage' => 12,
+            'perPage' => 10,
+            'featured' => false,
+        ],
+        'contracts' => [
+            'label' => 'Contratos',
+            'endpoint' => '/contracts',
+            'description' => 'Contratos de progressão e recompensas.',
+            'perPage' => 10,
+            'featured' => false,
+        ],
+        'missions' => [
+            'label' => 'Missões',
+            'endpoint' => '/missions',
+            'description' => 'Missões e objetivos disponíveis no ecossistema.',
+            'perPage' => 10,
+            'featured' => false,
+        ],
+        'competitive_tiers' => [
+            'label' => 'Tiers Competitivos',
+            'endpoint' => '/competitivetiers',
+            'description' => 'Estrutura de tiers e rank competitivo.',
+            'perPage' => 10,
+            'featured' => false,
+        ],
+        'level_borders' => [
+            'label' => 'Bordas de Nível',
+            'endpoint' => '/levelborders',
+            'description' => 'Bordas visuais de progressão de nível.',
+            'perPage' => 10,
+            'featured' => false,
+        ],
+        'gamemode_equippables' => [
+            'label' => 'Equipáveis de Modos',
+            'endpoint' => '/gamemodes/equippables',
+            'description' => 'Itens equipáveis relacionados a modos de jogo.',
+            'perPage' => 10,
             'featured' => false,
         ],
         'version' => [
-            'label' => 'Versao da API',
+            'label' => 'Versão da API',
             'endpoint' => '/version',
-            'description' => 'Informacoes de versao do endpoint publico.',
-            'perPage' => 1,
+            'description' => 'Informações de versão do endpoint público.',
+            'perPage' => 10,
             'featured' => false,
         ],
     ];
@@ -178,7 +213,7 @@ function api_fetch(string $endpoint, string $language = DEFAULT_LANGUAGE): array
         return [
             'ok' => false,
             'status' => $status,
-            'error' => 'Resposta invalida recebida da API do Valorant.',
+            'error' => 'Resposta inválida recebida da API do Valorant.',
             'data' => [],
         ];
     }
@@ -217,7 +252,7 @@ function api_fetch_item(string $endpoint, string $language = DEFAULT_LANGUAGE): 
         return [
             'ok' => false,
             'status' => 500,
-            'error' => 'Formato de item invalido retornado pela API.',
+            'error' => 'Formato de item inválido retornado pela API.',
             'data' => [],
         ];
     }
@@ -229,7 +264,7 @@ function api_fetch_item(string $endpoint, string $language = DEFAULT_LANGUAGE): 
         return [
             'ok' => false,
             'status' => 404,
-            'error' => 'Item nao encontrado na API.',
+            'error' => 'Item não encontrado na API.',
             'data' => [],
         ];
     }
@@ -263,7 +298,7 @@ function api_find_item_by_uuid(string $endpoint, string $uuid, string $language 
     return [
         'ok' => false,
         'status' => 404,
-        'error' => 'Item nao encontrado para o UUID informado.',
+        'error' => 'Item não encontrado para o UUID informado.',
         'data' => [],
     ];
 }
@@ -303,7 +338,7 @@ function paginate(array $items, int $page, int $perPage): array
 function card_from_item(string $type, array $item): array
 {
     $base = [
-        'title' => (string) ($item['displayName'] ?? $item['version'] ?? 'Sem titulo'),
+        'title' => (string) ($item['displayName'] ?? $item['version'] ?? 'Sem título'),
         'image' => null,
         'description' => (string) ($item['description'] ?? ''),
         'meta' => [],
@@ -312,8 +347,8 @@ function card_from_item(string $type, array $item): array
     switch ($type) {
         case 'agents':
             $base['image'] = $item['fullPortraitV2'] ?? $item['displayIcon'] ?? null;
-            $base['meta'][] = ['label' => 'Funcao', 'value' => safe_get($item, ['role', 'displayName'], 'Sem funcao')];
-            $base['meta'][] = ['label' => 'Dev Name', 'value' => $item['developerName'] ?? 'Nao informado'];
+            $base['meta'][] = ['label' => 'Função', 'value' => safe_get($item, ['role', 'displayName'], 'Sem função')];
+            $base['meta'][] = ['label' => 'Nome interno', 'value' => $item['developerName'] ?? 'Não informado'];
             if (!empty($item['uuid'])) {
                 $base['action'] = [
                     'label' => 'Ver perfil completo',
@@ -324,9 +359,9 @@ function card_from_item(string $type, array $item): array
 
         case 'weapons':
             $base['image'] = $item['displayIcon'] ?? null;
-            $base['meta'][] = ['label' => 'Categoria', 'value' => safe_get($item, ['shopData', 'categoryText'], 'Nao informado')];
+            $base['meta'][] = ['label' => 'Categoria', 'value' => safe_get($item, ['shopData', 'categoryText'], 'Não informado')];
             $base['meta'][] = ['label' => 'Custo', 'value' => safe_get($item, ['shopData', 'cost'], 'N/A')];
-            $base['description'] = 'Arma utilizada em confrontos taticos do universo Valorant.';
+            $base['description'] = 'Arma utilizada em confrontos táticos do universo Valorant.';
             if (!empty($item['uuid'])) {
                 $base['action'] = [
                     'label' => 'Ver arma completa',
@@ -337,9 +372,9 @@ function card_from_item(string $type, array $item): array
 
         case 'maps':
             $base['image'] = $item['splash'] ?? $item['displayIcon'] ?? null;
-            $base['meta'][] = ['label' => 'Coordenadas', 'value' => $item['coordinates'] ?? 'Nao informado'];
+            $base['meta'][] = ['label' => 'Coordenadas', 'value' => $item['coordinates'] ?? 'Não informado'];
             $callouts = isset($item['callouts']) && is_array($item['callouts']) ? count($item['callouts']) : 0;
-            $base['meta'][] = ['label' => 'Callouts', 'value' => $callouts . ' regioes'];
+            $base['meta'][] = ['label' => 'Callouts', 'value' => $callouts . ' regiões'];
             $base['description'] = $item['narrativeDescription'] ?? $base['description'];
             if (!empty($item['uuid'])) {
                 $base['action'] = [
@@ -364,9 +399,9 @@ function card_from_item(string $type, array $item): array
         case 'buddies':
             $base['image'] = $item['displayIcon'] ?? null;
             $levels = isset($item['levels']) && is_array($item['levels']) ? count($item['levels']) : 0;
-            $base['meta'][] = ['label' => 'Niveis', 'value' => (string) $levels];
-            $base['meta'][] = ['label' => 'Oculto sem posse', 'value' => (!empty($item['isHiddenIfNotOwned']) ? 'Sim' : 'Nao')];
-            $base['description'] = 'Companheiro cosmetico para personalizacao de armamento.';
+            $base['meta'][] = ['label' => 'Níveis', 'value' => (string) $levels];
+            $base['meta'][] = ['label' => 'Oculto sem posse', 'value' => (!empty($item['isHiddenIfNotOwned']) ? 'Sim' : 'Não')];
+            $base['description'] = 'Companheiro cosmético para personalização de armamento.';
             if (!empty($item['uuid'])) {
                 $base['action'] = [
                     'label' => 'Ver companheiro completo',
@@ -376,18 +411,18 @@ function card_from_item(string $type, array $item): array
             break;
 
         case 'version':
-            $base['title'] = 'Versao atual da API';
-            $base['description'] = 'Controle de versao retornado pelo endpoint oficial.';
-            $base['meta'][] = ['label' => 'Version', 'value' => $item['version'] ?? 'Nao disponivel'];
+            $base['title'] = 'Versão atual da API';
+            $base['description'] = 'Controle de versão retornado pelo endpoint oficial.';
+            $base['meta'][] = ['label' => 'Versão', 'value' => $item['version'] ?? 'Não disponível'];
             $base['action'] = [
-                'label' => 'Ver detalhes da versao',
+                'label' => 'Ver detalhes da versão',
                 'url' => 'entity.php?type=version',
             ];
             break;
 
         default:
             $base['image'] = $item['displayIcon'] ?? $item['fullRender'] ?? $item['displayIconSmall'] ?? null;
-            $base['meta'][] = ['label' => 'UUID', 'value' => $item['uuid'] ?? 'Nao informado'];
+            $base['meta'][] = ['label' => 'UUID', 'value' => $item['uuid'] ?? 'Não informado'];
             if (!empty($item['uuid'])) {
                 $base['action'] = [
                     'label' => 'Ver detalhes completos',

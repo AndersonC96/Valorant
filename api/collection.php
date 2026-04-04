@@ -14,7 +14,7 @@ if ($collection === null) {
     http_response_code(404);
     echo json_encode([
         'ok' => false,
-        'error' => 'Colecao inexistente.',
+        'error' => 'Coleção inexistente.',
     ], JSON_UNESCAPED_UNICODE);
     exit;
 }

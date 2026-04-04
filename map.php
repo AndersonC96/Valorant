@@ -5,7 +5,7 @@ declare(strict_types=1);
 require_once __DIR__ . '/includes/layout.php';
 
 $uuid = trim((string) ($_GET['uuid'] ?? ''));
-$result = ['ok' => false, 'error' => 'UUID do mapa nao informado.', 'data' => []];
+$result = ['ok' => false, 'error' => 'UUID do mapa não informado.', 'data' => []];
 
 if ($uuid !== '') {
     $result = api_find_item_by_uuid('/maps', $uuid);
@@ -25,13 +25,13 @@ foreach ($callouts as $callout) {
 }
 ksort($groupedCallouts);
 
-render_head('Valorant Atlas | ' . (string) $name, 'Perfil completo de mapa com callouts e detalhes taticos.');
+render_head('Valorant Atlas | ' . (string) $name, 'Perfil completo de mapa com callouts e detalhes táticos.');
 render_header('maps');
 ?>
 <section class="section">
     <p class="hero__eyebrow">Perfil de Mapa</p>
     <h1><?php echo h($name); ?></h1>
-    <p>Leitura tatico-estrutural do mapa com callouts por setor e dados tecnicos da API.</p>
+    <p>Leitura tático-estrutural do mapa com callouts por setor e dados técnicos da API.</p>
 </section>
 
 <?php if (!$result['ok']): ?>
@@ -50,12 +50,12 @@ render_header('maps');
             </div>
             <div class="map-detail__summary">
                 <h2><?php echo h($name); ?></h2>
-                <p><?php echo h((string) ($map['narrativeDescription'] ?? $map['tacticalDescription'] ?? 'Sem descricao narrativa disponivel.')); ?></p>
+                <p><?php echo h((string) ($map['narrativeDescription'] ?? $map['tacticalDescription'] ?? 'Sem descrição narrativa disponível.')); ?></p>
                 <ul class="card__meta">
-                    <li><b>Coordenadas:</b> <?php echo h((string) ($map['coordinates'] ?? 'Nao informado')); ?></li>
-                    <li><b>Map URL:</b> <?php echo h((string) ($map['mapUrl'] ?? 'Nao informado')); ?></li>
+                    <li><b>Coordenadas:</b> <?php echo h((string) ($map['coordinates'] ?? 'Não informado')); ?></li>
+                    <li><b>URL do mapa:</b> <?php echo h((string) ($map['mapUrl'] ?? 'Não informado')); ?></li>
                     <li><b>Total de callouts:</b> <?php echo h((string) count($callouts)); ?></li>
-                    <li><b>UUID:</b> <?php echo h((string) ($map['uuid'] ?? 'Nao informado')); ?></li>
+                    <li><b>UUID:</b> <?php echo h((string) ($map['uuid'] ?? 'Não informado')); ?></li>
                 </ul>
             </div>
         </div>
@@ -63,8 +63,8 @@ render_header('maps');
         <div class="map-detail__grid">
             <article class="card">
                 <div class="card__body">
-                    <h3 class="card__title">Descricao tatica</h3>
-                    <p class="card__text"><?php echo h((string) ($map['tacticalDescription'] ?? 'Nao informado')); ?></p>
+                    <h3 class="card__title">Descrição tática</h3>
+                    <p class="card__text"><?php echo h((string) ($map['tacticalDescription'] ?? 'Não informado')); ?></p>
                     <ul class="card__meta">
                         <li><b>xMultiplier:</b> <?php echo h(isset($map['xMultiplier']) ? (string) $map['xMultiplier'] : 'N/A'); ?></li>
                         <li><b>xScalarToAdd:</b> <?php echo h(isset($map['xScalarToAdd']) ? (string) $map['xScalarToAdd'] : 'N/A'); ?></li>
@@ -83,7 +83,7 @@ render_header('maps');
                             <img src="<?php echo h((string) $miniMap); ?>" alt="Mini mapa de <?php echo h($name); ?>">
                         </div>
                     <?php else: ?>
-                        <p class="card__text">Este mapa nao possui minimapa disponivel na API.</p>
+                        <p class="card__text">Este mapa não possui minimapa disponível na API.</p>
                     <?php endif; ?>
                 </div>
             </article>
@@ -92,9 +92,9 @@ render_header('maps');
                 <div class="card__body">
                     <h3 class="card__title">Planos de fundo</h3>
                     <ul class="card__meta">
-                        <li><b>Stylized background:</b> <?php echo h(!empty($map['stylizedBackgroundImage']) ? 'Disponivel' : 'Nao disponivel'); ?></li>
-                        <li><b>Premier background:</b> <?php echo h(!empty($map['premierBackgroundImage']) ? 'Disponivel' : 'Nao disponivel'); ?></li>
-                        <li><b>Tall list icon:</b> <?php echo h(!empty($map['listViewIconTall']) ? 'Disponivel' : 'Nao disponivel'); ?></li>
+                        <li><b>Background estilizado:</b> <?php echo h(!empty($map['stylizedBackgroundImage']) ? 'Disponível' : 'Não disponível'); ?></li>
+                        <li><b>Background Premier:</b> <?php echo h(!empty($map['premierBackgroundImage']) ? 'Disponível' : 'Não disponível'); ?></li>
+                        <li><b>Ícone vertical:</b> <?php echo h(!empty($map['listViewIconTall']) ? 'Disponível' : 'Não disponível'); ?></li>
                     </ul>
                 </div>
             </article>
@@ -103,7 +103,7 @@ render_header('maps');
         <article class="card">
             <div class="card__body">
                 <h3 class="card__title">Callouts por setor</h3>
-                <p class="card__text">Tabela de referencia para leitura de comunicacao de equipe, agrupada por setor principal.</p>
+                <p class="card__text">Tabela de referência para leitura de comunicação de equipe, agrupada por setor principal.</p>
                 <?php if (empty($groupedCallouts)): ?>
                     <p class="card__text">Nenhum callout retornado para este mapa.</p>
                 <?php else: ?>
@@ -115,8 +115,8 @@ render_header('maps');
                                     <table class="damage-table">
                                         <thead>
                                             <tr>
-                                                <th>Regiao</th>
-                                                <th>Super Regiao</th>
+                                                <th>Região</th>
+                                                <th>Super-região</th>
                                                 <th>X</th>
                                                 <th>Y</th>
                                                 <th>Z</th>
@@ -144,7 +144,7 @@ render_header('maps');
 
         <div class="map-detail__actions">
             <a class="btn btn--ghost" href="collections.php?type=maps">Voltar para Mapas</a>
-            <a class="btn btn--primary" href="collections.php">Ir para outras colecoes</a>
+            <a class="btn btn--primary" href="collections.php">Ir para outras coleções</a>
         </div>
     </section>
 <?php endif; ?>

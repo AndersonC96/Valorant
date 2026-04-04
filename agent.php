@@ -5,7 +5,7 @@ declare(strict_types=1);
 require_once __DIR__ . '/includes/layout.php';
 
 $uuid = trim((string) ($_GET['uuid'] ?? ''));
-$result = ['ok' => false, 'error' => 'UUID do agente nao informado.', 'data' => []];
+$result = ['ok' => false, 'error' => 'UUID do agente não informado.', 'data' => []];
 
 if ($uuid !== '') {
     $result = api_fetch_item('/agents/' . rawurlencode($uuid));
@@ -20,7 +20,7 @@ render_header('agents');
 <section class="section">
     <p class="hero__eyebrow">Perfil de Agente</p>
     <h1><?php echo h($name); ?></h1>
-    <p>Visao detalhada do agente selecionado com todas as informacoes publicadas pela API.</p>
+    <p>Visão detalhada do agente selecionado com as informações publicadas pela API.</p>
 </section>
 
 <?php if (!$result['ok']): ?>
@@ -39,14 +39,14 @@ render_header('agents');
             </div>
             <div class="agent-detail__summary">
                 <h2><?php echo h($name); ?></h2>
-                <p><?php echo h($agent['description'] ?? 'Sem descricao disponivel.'); ?></p>
+                <p><?php echo h($agent['description'] ?? 'Sem descrição disponível.'); ?></p>
                 <ul class="card__meta">
-                    <li><b>Funcao:</b> <?php echo h(safe_get($agent, ['role', 'displayName'], 'Nao informado')); ?></li>
-                    <li><b>Dev Name:</b> <?php echo h($agent['developerName'] ?? 'Nao informado'); ?></li>
-                    <li><b>Personagem jogavel:</b> <?php echo h(($agent['isPlayableCharacter'] ?? false) ? 'Sim' : 'Nao'); ?></li>
-                    <li><b>Disponivel para teste:</b> <?php echo h(($agent['isAvailableForTest'] ?? false) ? 'Sim' : 'Nao'); ?></li>
-                    <li><b>Base content:</b> <?php echo h(($agent['isBaseContent'] ?? false) ? 'Sim' : 'Nao'); ?></li>
-                    <li><b>UUID:</b> <?php echo h($agent['uuid'] ?? 'Nao informado'); ?></li>
+                    <li><b>Função:</b> <?php echo h(safe_get($agent, ['role', 'displayName'], 'Não informado')); ?></li>
+                    <li><b>Nome interno:</b> <?php echo h($agent['developerName'] ?? 'Não informado'); ?></li>
+                    <li><b>Personagem jogável:</b> <?php echo h(($agent['isPlayableCharacter'] ?? false) ? 'Sim' : 'Não'); ?></li>
+                    <li><b>Disponível para teste:</b> <?php echo h(($agent['isAvailableForTest'] ?? false) ? 'Sim' : 'Não'); ?></li>
+                    <li><b>Conteúdo base:</b> <?php echo h(($agent['isBaseContent'] ?? false) ? 'Sim' : 'Não'); ?></li>
+                    <li><b>UUID:</b> <?php echo h($agent['uuid'] ?? 'Não informado'); ?></li>
                 </ul>
             </div>
         </div>
@@ -54,8 +54,8 @@ render_header('agents');
         <div class="agent-detail__grid">
             <article class="card">
                 <div class="card__body">
-                    <h3 class="card__title">Classe tatica</h3>
-                    <p class="card__text"><?php echo h(safe_get($agent, ['role', 'description'], 'Sem descricao de funcao.')); ?></p>
+                    <h3 class="card__title">Classe tática</h3>
+                    <p class="card__text"><?php echo h(safe_get($agent, ['role', 'description'], 'Sem descrição de função.')); ?></p>
                     <?php $roleIcon = safe_get($agent, ['role', 'displayIcon'], ''); ?>
                     <?php if ($roleIcon !== ''): ?>
                         <div class="agent-detail__icon-row">
@@ -81,10 +81,10 @@ render_header('agents');
                                         <?php endif; ?>
                                         <div>
                                             <h4><?php echo h($ability['displayName'] ?? 'Habilidade sem nome'); ?></h4>
-                                            <small><?php echo h($ability['slot'] ?? 'Slot nao informado'); ?></small>
+                                            <small><?php echo h($ability['slot'] ?? 'Slot não informado'); ?></small>
                                         </div>
                                     </header>
-                                    <p><?php echo h($ability['description'] ?? 'Sem descricao.'); ?></p>
+                                    <p><?php echo h($ability['description'] ?? 'Sem descrição.'); ?></p>
                                 </section>
                             <?php endforeach; ?>
                         </div>
@@ -94,11 +94,11 @@ render_header('agents');
 
             <article class="card">
                 <div class="card__body">
-                    <h3 class="card__title">Dados visuais e audio</h3>
+                    <h3 class="card__title">Dados visuais e áudio</h3>
                     <ul class="card__meta">
-                        <li><b>Icone:</b> <?php echo h(!empty($agent['displayIcon']) ? 'Disponivel' : 'Nao disponivel'); ?></li>
-                        <li><b>Splash:</b> <?php echo h(!empty($agent['background']) ? 'Disponivel' : 'Nao disponivel'); ?></li>
-                        <li><b>Voice line:</b> <?php echo h(!empty(safe_get($agent, ['voiceLine', 'mediaList', 0, 'wave'])) ? 'Disponivel' : 'Nao disponivel'); ?></li>
+                        <li><b>Ícone:</b> <?php echo h(!empty($agent['displayIcon']) ? 'Disponível' : 'Não disponível'); ?></li>
+                        <li><b>Splash:</b> <?php echo h(!empty($agent['background']) ? 'Disponível' : 'Não disponível'); ?></li>
+                        <li><b>Voice line:</b> <?php echo h(!empty(safe_get($agent, ['voiceLine', 'mediaList', 0, 'wave'])) ? 'Disponível' : 'Não disponível'); ?></li>
                         <li><b>Background gradients:</b> <?php echo h(isset($agent['backgroundGradientColors']) && is_array($agent['backgroundGradientColors']) ? (string) count($agent['backgroundGradientColors']) : '0'); ?></li>
                         <li><b>Tags:</b> <?php echo h(isset($agent['characterTags']) && is_array($agent['characterTags']) ? (string) count($agent['characterTags']) : '0'); ?></li>
                     </ul>
@@ -112,7 +112,7 @@ render_header('agents');
 
         <div class="agent-detail__actions">
             <a class="btn btn--ghost" href="collections.php?type=agents">Voltar para Agentes</a>
-            <a class="btn btn--primary" href="collections.php">Ir para outras colecoes</a>
+            <a class="btn btn--primary" href="collections.php">Ir para outras coleções</a>
         </div>
     </section>
 <?php endif; ?>

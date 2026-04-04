@@ -29,14 +29,14 @@ function render_header(string $active = 'home'): void
     echo '<body>';
     echo '<header class="site-header">';
     echo '<div class="site-header__inner">';
-    echo '<a class="brand" href="index.php" aria-label="Valorant Atlas - inicio">';
+    echo '<a class="brand" href="index.php" aria-label="Valorant Atlas - início">';
     echo '<span class="brand__mark">VA</span>';
     echo '<span class="brand__text">Valorant Atlas</span>';
     echo '</a>';
     echo '<button class="nav-toggle" aria-expanded="false" aria-controls="main-nav">Menu</button>';
-    echo '<nav id="main-nav" class="main-nav" aria-label="Navegacao principal">';
-    echo '<a ' . ($active === 'home' ? 'class="is-active"' : '') . ' href="index.php">Inicio</a>';
-    echo '<a ' . ($active === 'collections' ? 'class="is-active"' : '') . ' href="collections.php">Colecoes</a>';
+    echo '<nav id="main-nav" class="main-nav" aria-label="Navegação principal">';
+    echo '<a ' . ($active === 'home' ? 'class="is-active"' : '') . ' href="index.php">Início</a>';
+    echo '<a ' . ($active === 'collections' ? 'class="is-active"' : '') . ' href="collections.php">Coleções</a>';
     echo '<a ' . ($active === 'specs' ? 'class="is-active"' : '') . ' href="specs.php">Requisitos</a>';
     foreach ($featured as $slug => $section) {
         echo '<a ' . ($active === $slug ? 'class="is-active"' : '') . ' href="collections.php?type=' . h($slug) . '">' . h($section['label']) . '</a>';
@@ -53,8 +53,8 @@ function render_footer(): void
     echo '</main>';
     echo '<footer class="site-footer">';
     echo '<div class="site-footer__inner">';
-    echo '<p>Projeto independente para fins de estudo e portfolio. Dados consumidos da API publica Valorant-API.</p>';
-    echo '<p>&copy; ' . h((string) $year) . ' Valorant Atlas. Valorant e marcas associadas pertencem a Riot Games.</p>';
+    echo '<p>Aplicação independente de consulta de dados, alimentada pela API pública Valorant-API.</p>';
+    echo '<p>&copy; ' . h((string) $year) . ' Valorant Atlas. Valorant e marcas associadas pertencem à Riot Games.</p>';
     echo '</div>';
     echo '</footer>';
     echo '<script src="js/app.js" defer></script>';

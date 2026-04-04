@@ -5,7 +5,7 @@ declare(strict_types=1);
 require_once __DIR__ . '/includes/layout.php';
 
 $uuid = trim((string) ($_GET['uuid'] ?? ''));
-$result = ['ok' => false, 'error' => 'UUID da arma nao informado.', 'data' => []];
+$result = ['ok' => false, 'error' => 'UUID da arma não informado.', 'data' => []];
 
 if ($uuid !== '') {
     $result = api_find_item_by_uuid('/weapons', $uuid);
@@ -25,7 +25,7 @@ render_header('weapons');
 <section class="section">
     <p class="hero__eyebrow">Perfil de Arma</p>
     <h1><?php echo h($name); ?></h1>
-    <p>Painel detalhado de performance, economia e cosmeticos da arma selecionada.</p>
+    <p>Painel detalhado de desempenho, economia e cosméticos da arma selecionada.</p>
 </section>
 
 <?php if (!$result['ok']): ?>
@@ -44,12 +44,12 @@ render_header('weapons');
             <div class="weapon-detail__summary">
                 <h2><?php echo h($name); ?></h2>
                 <ul class="card__meta">
-                    <li><b>Categoria tecnica:</b> <?php echo h((string) ($weapon['category'] ?? 'Nao informado')); ?></li>
-                    <li><b>Categoria da loja:</b> <?php echo h((string) ($shop['categoryText'] ?? $shop['category'] ?? 'Nao informado')); ?></li>
-                    <li><b>Custo:</b> <?php echo h(isset($shop['cost']) ? (string) $shop['cost'] : 'Nao informado'); ?></li>
-                    <li><b>Prioridade na loja:</b> <?php echo h(isset($shop['shopOrderPriority']) ? (string) $shop['shopOrderPriority'] : 'Nao informado'); ?></li>
-                    <li><b>Pode descartar:</b> <?php echo h((isset($shop['canBeTrashed']) && $shop['canBeTrashed']) ? 'Sim' : 'Nao'); ?></li>
-                    <li><b>UUID:</b> <?php echo h((string) ($weapon['uuid'] ?? 'Nao informado')); ?></li>
+                    <li><b>Categoria técnica:</b> <?php echo h((string) ($weapon['category'] ?? 'Não informado')); ?></li>
+                    <li><b>Categoria da loja:</b> <?php echo h((string) ($shop['categoryText'] ?? $shop['category'] ?? 'Não informado')); ?></li>
+                    <li><b>Custo:</b> <?php echo h(isset($shop['cost']) ? (string) $shop['cost'] : 'Não informado'); ?></li>
+                    <li><b>Prioridade na loja:</b> <?php echo h(isset($shop['shopOrderPriority']) ? (string) $shop['shopOrderPriority'] : 'Não informado'); ?></li>
+                    <li><b>Pode descartar:</b> <?php echo h((isset($shop['canBeTrashed']) && $shop['canBeTrashed']) ? 'Sim' : 'Não'); ?></li>
+                    <li><b>UUID:</b> <?php echo h((string) ($weapon['uuid'] ?? 'Não informado')); ?></li>
                 </ul>
             </div>
         </div>
@@ -57,15 +57,15 @@ render_header('weapons');
         <div class="weapon-detail__grid">
             <article class="card">
                 <div class="card__body">
-                    <h3 class="card__title">Estatisticas principais</h3>
+                    <h3 class="card__title">Estatísticas principais</h3>
                     <ul class="card__meta">
                         <li><b>Fire rate:</b> <?php echo h(isset($stats['fireRate']) ? (string) $stats['fireRate'] : 'N/A'); ?></li>
                         <li><b>Magazine size:</b> <?php echo h(isset($stats['magazineSize']) ? (string) $stats['magazineSize'] : 'N/A'); ?></li>
                         <li><b>Reload (s):</b> <?php echo h(isset($stats['reloadTimeSeconds']) ? (string) $stats['reloadTimeSeconds'] : 'N/A'); ?></li>
                         <li><b>Equip (s):</b> <?php echo h(isset($stats['equipTimeSeconds']) ? (string) $stats['equipTimeSeconds'] : 'N/A'); ?></li>
-                        <li><b>Precisao primeiro tiro:</b> <?php echo h(isset($stats['firstBulletAccuracy']) ? (string) $stats['firstBulletAccuracy'] : 'N/A'); ?></li>
+                        <li><b>Precisão do primeiro tiro:</b> <?php echo h(isset($stats['firstBulletAccuracy']) ? (string) $stats['firstBulletAccuracy'] : 'N/A'); ?></li>
                         <li><b>Multiplicador de corrida:</b> <?php echo h(isset($stats['runSpeedMultiplier']) ? (string) $stats['runSpeedMultiplier'] : 'N/A'); ?></li>
-                        <li><b>Penetracao:</b> <?php echo h((string) ($stats['wallPenetration'] ?? 'N/A')); ?></li>
+                        <li><b>Penetração:</b> <?php echo h((string) ($stats['wallPenetration'] ?? 'N/A')); ?></li>
                         <li><b>Alt fire:</b> <?php echo h((string) ($stats['altFireType'] ?? 'N/A')); ?></li>
                     </ul>
                 </div>
@@ -75,14 +75,14 @@ render_header('weapons');
                 <div class="card__body">
                     <h3 class="card__title">ADS e modo alternativo</h3>
                     <?php if (empty($adsStats)): ?>
-                        <p class="card__text">Esta arma nao possui estatisticas ADS detalhadas.</p>
+                        <p class="card__text">Esta arma não possui estatísticas ADS detalhadas.</p>
                     <?php else: ?>
                         <ul class="card__meta">
                             <li><b>Zoom:</b> <?php echo h(isset($adsStats['zoomMultiplier']) ? (string) $adsStats['zoomMultiplier'] : 'N/A'); ?></li>
                             <li><b>Fire rate ADS:</b> <?php echo h(isset($adsStats['fireRate']) ? (string) $adsStats['fireRate'] : 'N/A'); ?></li>
                             <li><b>Run speed ADS:</b> <?php echo h(isset($adsStats['runSpeedMultiplier']) ? (string) $adsStats['runSpeedMultiplier'] : 'N/A'); ?></li>
                             <li><b>Burst count:</b> <?php echo h(isset($adsStats['burstCount']) ? (string) $adsStats['burstCount'] : 'N/A'); ?></li>
-                            <li><b>Precisao ADS:</b> <?php echo h(isset($adsStats['firstBulletAccuracy']) ? (string) $adsStats['firstBulletAccuracy'] : 'N/A'); ?></li>
+                            <li><b>Precisão ADS:</b> <?php echo h(isset($adsStats['firstBulletAccuracy']) ? (string) $adsStats['firstBulletAccuracy'] : 'N/A'); ?></li>
                         </ul>
                     <?php endif; ?>
                 </div>
@@ -90,9 +90,9 @@ render_header('weapons');
 
             <article class="card weapon-detail__damage-card">
                 <div class="card__body">
-                    <h3 class="card__title">Dano por faixa de distancia</h3>
+                    <h3 class="card__title">Dano por faixa de distância</h3>
                     <?php if (empty($damageRanges)): ?>
-                        <p class="card__text">Sem dados de dano por distancia para esta arma.</p>
+                        <p class="card__text">Sem dados de dano por distância para esta arma.</p>
                     <?php else: ?>
                         <div class="table-wrap">
                             <table class="damage-table">
@@ -124,7 +124,7 @@ render_header('weapons');
         <article class="card">
             <div class="card__body">
                 <h3 class="card__title">Skins da arma</h3>
-                <p class="card__text">A API retorna um volume alto de skins. Abaixo estao as primeiras 8 para leitura rapida com niveis e cromas.</p>
+                <p class="card__text">A API retorna um volume alto de skins. Abaixo estão as primeiras 8 para leitura rápida com níveis e cromas.</p>
                 <?php if (empty($skins)): ?>
                     <p class="card__text">Nenhuma skin registrada para esta arma.</p>
                 <?php else: ?>
@@ -141,7 +141,7 @@ render_header('weapons');
                                         <small><?php echo h((string) ($skin['contentTierUuid'] ?? 'Sem tier')); ?></small>
                                     </div>
                                 </div>
-                                <p>Niveis: <?php echo h((string) (isset($skin['levels']) && is_array($skin['levels']) ? count($skin['levels']) : 0)); ?> | Cromas: <?php echo h((string) (isset($skin['chromas']) && is_array($skin['chromas']) ? count($skin['chromas']) : 0)); ?></p>
+                                <p>Níveis: <?php echo h((string) (isset($skin['levels']) && is_array($skin['levels']) ? count($skin['levels']) : 0)); ?> | Cromas: <?php echo h((string) (isset($skin['chromas']) && is_array($skin['chromas']) ? count($skin['chromas']) : 0)); ?></p>
                             </section>
                         <?php endforeach; ?>
                     </div>
@@ -151,7 +151,7 @@ render_header('weapons');
 
         <div class="weapon-detail__actions">
             <a class="btn btn--ghost" href="collections.php?type=weapons">Voltar para Armas</a>
-            <a class="btn btn--primary" href="collections.php">Ir para outras colecoes</a>
+            <a class="btn btn--primary" href="collections.php">Ir para outras coleções</a>
         </div>
     </section>
 <?php endif; ?>

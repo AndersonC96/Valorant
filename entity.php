@@ -8,7 +8,7 @@ $type = trim((string) ($_GET['type'] ?? ''));
 $uuid = trim((string) ($_GET['uuid'] ?? ''));
 
 $collection = app_collection($type);
-$result = ['ok' => false, 'error' => 'Colecao invalida.', 'data' => []];
+$result = ['ok' => false, 'error' => 'Coleção inválida.', 'data' => []];
 
 if ($collection !== null) {
     if ($type === 'version') {
@@ -17,7 +17,7 @@ if ($collection !== null) {
             $item = $res['data'][0] ?? [];
             $result = [
                 'ok' => is_array($item),
-                'error' => is_array($item) ? '' : 'Resposta de versao invalida.',
+                'error' => is_array($item) ? '' : 'Resposta de versão inválida.',
                 'data' => is_array($item) ? $item : [],
             ];
         } else {
@@ -27,7 +27,7 @@ if ($collection !== null) {
         $res = api_find_item_by_uuid($collection['endpoint'], $uuid);
         $result = ['ok' => $res['ok'], 'error' => $res['error'], 'data' => is_array($res['data']) ? $res['data'] : []];
     } else {
-        $result = ['ok' => false, 'error' => 'UUID nao informado para esta colecao.', 'data' => []];
+        $result = ['ok' => false, 'error' => 'UUID não informado para esta coleção.', 'data' => []];
     }
 }
 
@@ -86,11 +86,11 @@ function detail_arrays_rows(array $item): array
     return $rows;
 }
 
-render_head('Valorant Atlas | ' . $title, 'Visualizacao unica de item para colecoes do Valorant Atlas.');
+render_head('Valorant Atlas | ' . $title, 'Visualização única de item para coleções do Valorant Atlas.');
 render_header('collections');
 ?>
 <section class="section">
-    <p class="hero__eyebrow">Visualizacao Unica</p>
+    <p class="hero__eyebrow">Visualização Única</p>
     <h1><?php echo h($title); ?></h1>
     <p><?php echo h((string) ($collection['description'] ?? 'Detalhes completos do item selecionado.')); ?></p>
 </section>
@@ -98,7 +98,7 @@ render_header('collections');
 <?php if (!$result['ok']): ?>
     <section class="section">
         <div class="status status--error"><?php echo h($result['error']); ?></div>
-        <a class="btn btn--ghost" href="collections.php?type=<?php echo h($type ?: 'agents'); ?>">Voltar para colecao</a>
+        <a class="btn btn--ghost" href="collections.php?type=<?php echo h($type ?: 'agents'); ?>">Voltar para coleção</a>
     </section>
 <?php else: ?>
     <?php $image = detail_image($item); ?>
@@ -111,15 +111,15 @@ render_header('collections');
                 <?php if ($image !== null): ?>
                     <img src="<?php echo h($image); ?>" alt="Imagem de <?php echo h($title); ?>">
                 <?php else: ?>
-                    <div class="entity-detail__empty">Sem imagem disponivel</div>
+                    <div class="entity-detail__empty">Sem imagem disponível</div>
                 <?php endif; ?>
             </div>
             <div class="entity-detail__summary">
                 <h2><?php echo h($title); ?></h2>
                 <ul class="card__meta">
-                    <li><b>Colecao:</b> <?php echo h((string) ($collection['label'] ?? $type)); ?></li>
-                    <li><b>UUID:</b> <?php echo h((string) ($item['uuid'] ?? 'Nao informado')); ?></li>
-                    <li><b>Asset Path:</b> <?php echo h((string) ($item['assetPath'] ?? 'Nao informado')); ?></li>
+                    <li><b>Coleção:</b> <?php echo h((string) ($collection['label'] ?? $type)); ?></li>
+                    <li><b>UUID:</b> <?php echo h((string) ($item['uuid'] ?? 'Não informado')); ?></li>
+                    <li><b>Caminho do asset:</b> <?php echo h((string) ($item['assetPath'] ?? 'Não informado')); ?></li>
                     <li><b>Campos escalares:</b> <?php echo h((string) count($scalars)); ?></li>
                     <li><b>Campos complexos:</b> <?php echo h((string) count($arrays)); ?></li>
                 </ul>
@@ -177,14 +177,14 @@ render_header('collections');
         <article class="card">
             <div class="card__body">
                 <h3 class="card__title">JSON bruto do item</h3>
-                <p class="card__text">Visualizacao tecnica completa para depuracao e exploracao da API.</p>
+                <p class="card__text">Visualização técnica completa para depuração e exploração da API.</p>
                 <pre class="entity-json"><?php echo h((string) json_encode($item, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES)); ?></pre>
             </div>
         </article>
 
         <div class="entity-detail__actions">
-            <a class="btn btn--ghost" href="collections.php?type=<?php echo h($type); ?>">Voltar para colecao</a>
-            <a class="btn btn--primary" href="collections.php">Ir para outras colecoes</a>
+            <a class="btn btn--ghost" href="collections.php?type=<?php echo h($type); ?>">Voltar para coleção</a>
+            <a class="btn btn--primary" href="collections.php">Ir para outras coleções</a>
         </div>
     </section>
 <?php endif; ?>
