@@ -168,7 +168,7 @@
         pagination.innerHTML = '';
 
         try {
-            const response = await fetch(`api/collection.php?type=${encodeURIComponent(type)}&page=${encodeURIComponent(page)}`);
+            const response = await fetch(`api/collections?type=${encodeURIComponent(type)}&page=${encodeURIComponent(page)}`);
             const payload = await response.json();
 
             if (!payload.ok) {

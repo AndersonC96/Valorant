@@ -14,9 +14,9 @@ use App\Core\Router;
 use App\Services\ValorantApiService;
 use Dotenv\Dotenv;
 
-require_once __DIR__ . '/vendor/autoload.php';
+require_once __DIR__ . '/../vendor/autoload.php';
 
-$dotenv = Dotenv::createImmutable(__DIR__);
+$dotenv = Dotenv::createImmutable(__DIR__ . '/..');
 $dotenv->safeLoad();
 
 $service = new ValorantApiService();
